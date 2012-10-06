@@ -1,0 +1,1460 @@
+{
+  "costsByType": {
+    "aws-ec2-ap-northeast-1-c1.medium": {
+      "variableCosts": 0.19,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1-c1.xlarge": {
+      "variableCosts": 0.76,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1-m1.large": {
+      "variableCosts": 0.368,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1-m1.medium": {
+      "variableCosts": 0.184,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1-m1.small": {
+      "variableCosts": 0.092,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1-m1.xlarge": {
+      "variableCosts": 0.736,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1-m2.2xlarge": {
+      "variableCosts": 1.036,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1-m2.4xlarge": {
+      "variableCosts": 2.072,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1-m2.xlarge": {
+      "variableCosts": 0.518,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1-t1.micro": {
+      "variableCosts": 0.027,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1a-c1.medium": {
+      "variableCosts": 0.19,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1a-c1.xlarge": {
+      "variableCosts": 0.76,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1a-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1a-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1a-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1a-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1a-m1.large": {
+      "variableCosts": 0.368,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1a-m1.medium": {
+      "variableCosts": 0.184,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1a-m1.small": {
+      "variableCosts": 0.092,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1a-m1.xlarge": {
+      "variableCosts": 0.736,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1a-m2.2xlarge": {
+      "variableCosts": 1.036,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1a-m2.4xlarge": {
+      "variableCosts": 2.072,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1a-m2.xlarge": {
+      "variableCosts": 0.518,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1a-t1.micro": {
+      "variableCosts": 0.027,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1b-c1.medium": {
+      "variableCosts": 0.19,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1b-c1.xlarge": {
+      "variableCosts": 0.76,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1b-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1b-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1b-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1b-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1b-m1.large": {
+      "variableCosts": 0.368,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1b-m1.medium": {
+      "variableCosts": 0.184,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1b-m1.small": {
+      "variableCosts": 0.092,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1b-m1.xlarge": {
+      "variableCosts": 0.736,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1b-m2.2xlarge": {
+      "variableCosts": 1.036,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1b-m2.4xlarge": {
+      "variableCosts": 2.072,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1b-m2.xlarge": {
+      "variableCosts": 0.518,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1b-t1.micro": {
+      "variableCosts": 0.027,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1c-c1.medium": {
+      "variableCosts": 0.19,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1c-c1.xlarge": {
+      "variableCosts": 0.76,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1c-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1c-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1c-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1c-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1c-m1.large": {
+      "variableCosts": 0.368,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1c-m1.medium": {
+      "variableCosts": 0.184,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1c-m1.small": {
+      "variableCosts": 0.092,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1c-m1.xlarge": {
+      "variableCosts": 0.736,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1c-m2.2xlarge": {
+      "variableCosts": 1.036,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1c-m2.4xlarge": {
+      "variableCosts": 2.072,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1c-m2.xlarge": {
+      "variableCosts": 0.518,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-northeast-1c-t1.micro": {
+      "variableCosts": 0.027,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1-c1.medium": {
+      "variableCosts": 0.186,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1-c1.xlarge": {
+      "variableCosts": 0.744,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1-m1.large": {
+      "variableCosts": 0.34,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1-m1.medium": {
+      "variableCosts": 0.17,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1-m1.small": {
+      "variableCosts": 0.085,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1-m1.xlarge": {
+      "variableCosts": 0.68,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1-t1.micro": {
+      "variableCosts": 0.02,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1a-c1.medium": {
+      "variableCosts": 0.186,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1a-c1.xlarge": {
+      "variableCosts": 0.744,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1a-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1a-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1a-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1a-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1a-m1.large": {
+      "variableCosts": 0.34,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1a-m1.medium": {
+      "variableCosts": 0.17,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1a-m1.small": {
+      "variableCosts": 0.085,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1a-m1.xlarge": {
+      "variableCosts": 0.68,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1a-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1a-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1a-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1a-t1.micro": {
+      "variableCosts": 0.02,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1b-c1.medium": {
+      "variableCosts": 0.186,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1b-c1.xlarge": {
+      "variableCosts": 0.744,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1b-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1b-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1b-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1b-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1b-m1.large": {
+      "variableCosts": 0.34,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1b-m1.medium": {
+      "variableCosts": 0.17,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1b-m1.small": {
+      "variableCosts": 0.085,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1b-m1.xlarge": {
+      "variableCosts": 0.68,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1b-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1b-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1b-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-ap-southeast-1b-t1.micro": {
+      "variableCosts": 0.02,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1-c1.medium": {
+      "variableCosts": 0.186,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1-c1.xlarge": {
+      "variableCosts": 0.744,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1-cc2.8xlarge": {
+      "variableCosts": 2.7,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1-cg1.4xlarge": {
+      "variableCosts": 2.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1-hi1.4xlarge": {
+      "variableCosts": 3.41,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1-m1.large": {
+      "variableCosts": 0.34,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1-m1.medium": {
+      "variableCosts": 0.17,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1-m1.small": {
+      "variableCosts": 0.085,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1-m1.xlarge": {
+      "variableCosts": 0.68,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1-t1.micro": {
+      "variableCosts": 0.02,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1a-c1.medium": {
+      "variableCosts": 0.186,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1a-c1.xlarge": {
+      "variableCosts": 0.744,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1a-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1a-cc2.8xlarge": {
+      "variableCosts": 2.7,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1a-cg1.4xlarge": {
+      "variableCosts": 2.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1a-hi1.4xlarge": {
+      "variableCosts": 3.41,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1a-m1.large": {
+      "variableCosts": 0.34,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1a-m1.medium": {
+      "variableCosts": 0.17,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1a-m1.small": {
+      "variableCosts": 0.085,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1a-m1.xlarge": {
+      "variableCosts": 0.68,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1a-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1a-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1a-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1a-t1.micro": {
+      "variableCosts": 0.02,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1b-c1.medium": {
+      "variableCosts": 0.186,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1b-c1.xlarge": {
+      "variableCosts": 0.744,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1b-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1b-cc2.8xlarge": {
+      "variableCosts": 2.7,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1b-cg1.4xlarge": {
+      "variableCosts": 2.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1b-hi1.4xlarge": {
+      "variableCosts": 3.41,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1b-m1.large": {
+      "variableCosts": 0.34,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1b-m1.medium": {
+      "variableCosts": 0.17,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1b-m1.small": {
+      "variableCosts": 0.085,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1b-m1.xlarge": {
+      "variableCosts": 0.68,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1b-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1b-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1b-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1b-t1.micro": {
+      "variableCosts": 0.02,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1c-c1.medium": {
+      "variableCosts": 0.186,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1c-c1.xlarge": {
+      "variableCosts": 0.744,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1c-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1c-cc2.8xlarge": {
+      "variableCosts": 2.7,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1c-cg1.4xlarge": {
+      "variableCosts": 2.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1c-hi1.4xlarge": {
+      "variableCosts": 3.41,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1c-m1.large": {
+      "variableCosts": 0.34,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1c-m1.medium": {
+      "variableCosts": 0.17,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1c-m1.small": {
+      "variableCosts": 0.085,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1c-m1.xlarge": {
+      "variableCosts": 0.68,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1c-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1c-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1c-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-eu-west-1c-t1.micro": {
+      "variableCosts": 0.02,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1-c1.medium": {
+      "variableCosts": 0.23,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1-c1.xlarge": {
+      "variableCosts": 0.92,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1-m1.large": {
+      "variableCosts": 0.46,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1-m1.medium": {
+      "variableCosts": 0.23,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1-m1.small": {
+      "variableCosts": 0.115,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1-m1.xlarge": {
+      "variableCosts": 0.92,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1-m2.2xlarge": {
+      "variableCosts": 1.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1-m2.4xlarge": {
+      "variableCosts": 2.72,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1-m2.xlarge": {
+      "variableCosts": 0.68,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1-t1.micro": {
+      "variableCosts": 0.027,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1a-c1.medium": {
+      "variableCosts": 0.23,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1a-c1.xlarge": {
+      "variableCosts": 0.92,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1a-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1a-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1a-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1a-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1a-m1.large": {
+      "variableCosts": 0.46,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1a-m1.medium": {
+      "variableCosts": 0.23,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1a-m1.small": {
+      "variableCosts": 0.115,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1a-m1.xlarge": {
+      "variableCosts": 0.92,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1a-m2.2xlarge": {
+      "variableCosts": 1.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1a-m2.4xlarge": {
+      "variableCosts": 2.72,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1a-m2.xlarge": {
+      "variableCosts": 0.68,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1a-t1.micro": {
+      "variableCosts": 0.027,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1b-c1.medium": {
+      "variableCosts": 0.23,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1b-c1.xlarge": {
+      "variableCosts": 0.92,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1b-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1b-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1b-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1b-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1b-m1.large": {
+      "variableCosts": 0.46,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1b-m1.medium": {
+      "variableCosts": 0.23,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1b-m1.small": {
+      "variableCosts": 0.115,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1b-m1.xlarge": {
+      "variableCosts": 0.92,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1b-m2.2xlarge": {
+      "variableCosts": 1.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1b-m2.4xlarge": {
+      "variableCosts": 2.72,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1b-m2.xlarge": {
+      "variableCosts": 0.68,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-sa-east-1b-t1.micro": {
+      "variableCosts": 0.027,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1-c1.medium": {
+      "variableCosts": 0.165,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1-c1.xlarge": {
+      "variableCosts": 0.66,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1-cc1.4xlarge": {
+      "variableCosts": 0.9,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1-cc2.8xlarge": {
+      "variableCosts": 2.7,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1-cg1.4xlarge": {
+      "variableCosts": 2.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1-hi1.4xlarge": {
+      "variableCosts": 3.41,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1-m1.large": {
+      "variableCosts": 0.34,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1-m1.medium": {
+      "variableCosts": 0.17,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1-m1.small": {
+      "variableCosts": 0.085,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1-m1.xlarge": {
+      "variableCosts": 0.68,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1-t1.micro": {
+      "variableCosts": 0.02,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1a-c1.medium": {
+      "variableCosts": 0.165,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1a-c1.xlarge": {
+      "variableCosts": 0.66,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1a-cc1.4xlarge": {
+      "variableCosts": 0.9,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1a-cc2.8xlarge": {
+      "variableCosts": 2.7,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1a-cg1.4xlarge": {
+      "variableCosts": 2.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1a-hi1.4xlarge": {
+      "variableCosts": 3.41,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1a-m1.large": {
+      "variableCosts": 0.34,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1a-m1.medium": {
+      "variableCosts": 0.17,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1a-m1.small": {
+      "variableCosts": 0.085,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1a-m1.xlarge": {
+      "variableCosts": 0.68,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1a-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1a-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1a-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1a-t1.micro": {
+      "variableCosts": 0.02,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1b-c1.medium": {
+      "variableCosts": 0.165,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1b-c1.xlarge": {
+      "variableCosts": 0.66,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1b-cc1.4xlarge": {
+      "variableCosts": 0.9,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1b-cc2.8xlarge": {
+      "variableCosts": 2.7,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1b-cg1.4xlarge": {
+      "variableCosts": 2.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1b-hi1.4xlarge": {
+      "variableCosts": 3.41,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1b-m1.large": {
+      "variableCosts": 0.34,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1b-m1.medium": {
+      "variableCosts": 0.17,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1b-m1.small": {
+      "variableCosts": 0.085,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1b-m1.xlarge": {
+      "variableCosts": 0.68,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1b-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1b-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1b-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1b-t1.micro": {
+      "variableCosts": 0.02,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1c-c1.medium": {
+      "variableCosts": 0.165,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1c-c1.xlarge": {
+      "variableCosts": 0.66,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1c-cc1.4xlarge": {
+      "variableCosts": 0.9,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1c-cc2.8xlarge": {
+      "variableCosts": 2.7,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1c-cg1.4xlarge": {
+      "variableCosts": 2.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1c-hi1.4xlarge": {
+      "variableCosts": 3.41,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1c-m1.large": {
+      "variableCosts": 0.34,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1c-m1.medium": {
+      "variableCosts": 0.17,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1c-m1.small": {
+      "variableCosts": 0.085,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1c-m1.xlarge": {
+      "variableCosts": 0.68,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1c-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1c-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1c-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1c-t1.micro": {
+      "variableCosts": 0.02,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1d-c1.medium": {
+      "variableCosts": 0.165,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1d-c1.xlarge": {
+      "variableCosts": 0.66,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1d-cc1.4xlarge": {
+      "variableCosts": 0.9,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1d-cc2.8xlarge": {
+      "variableCosts": 2.7,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1d-cg1.4xlarge": {
+      "variableCosts": 2.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1d-hi1.4xlarge": {
+      "variableCosts": 3.41,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1d-m1.large": {
+      "variableCosts": 0.34,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1d-m1.medium": {
+      "variableCosts": 0.17,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1d-m1.small": {
+      "variableCosts": 0.085,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1d-m1.xlarge": {
+      "variableCosts": 0.68,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1d-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1d-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1d-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-east-1d-t1.micro": {
+      "variableCosts": 0.02,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1-c1.medium": {
+      "variableCosts": 0.186,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1-c1.xlarge": {
+      "variableCosts": 0.744,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1-m1.large": {
+      "variableCosts": 0.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1-m1.medium": {
+      "variableCosts": 0.18,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1-m1.small": {
+      "variableCosts": 0.09,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1-m1.xlarge": {
+      "variableCosts": 0.72,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1-t1.micro": {
+      "variableCosts": 0.025,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1a-c1.medium": {
+      "variableCosts": 0.186,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1a-c1.xlarge": {
+      "variableCosts": 0.744,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1a-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1a-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1a-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1a-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1a-m1.large": {
+      "variableCosts": 0.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1a-m1.medium": {
+      "variableCosts": 0.18,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1a-m1.small": {
+      "variableCosts": 0.09,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1a-m1.xlarge": {
+      "variableCosts": 0.72,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1a-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1a-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1a-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1a-t1.micro": {
+      "variableCosts": 0.025,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1c-c1.medium": {
+      "variableCosts": 0.186,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1c-c1.xlarge": {
+      "variableCosts": 0.744,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1c-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1c-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1c-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1c-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1c-m1.large": {
+      "variableCosts": 0.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1c-m1.medium": {
+      "variableCosts": 0.18,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1c-m1.small": {
+      "variableCosts": 0.09,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1c-m1.xlarge": {
+      "variableCosts": 0.72,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1c-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1c-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1c-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-1c-t1.micro": {
+      "variableCosts": 0.025,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2-c1.medium": {
+      "variableCosts": 0.186,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2-c1.xlarge": {
+      "variableCosts": 0.744,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2-m1.large": {
+      "variableCosts": 0.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2-m1.medium": {
+      "variableCosts": 0.18,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2-m1.small": {
+      "variableCosts": 0.09,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2-m1.xlarge": {
+      "variableCosts": 0.72,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2-t1.micro": {
+      "variableCosts": 0.025,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2a-c1.medium": {
+      "variableCosts": 0.186,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2a-c1.xlarge": {
+      "variableCosts": 0.744,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2a-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2a-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2a-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2a-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2a-m1.large": {
+      "variableCosts": 0.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2a-m1.medium": {
+      "variableCosts": 0.18,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2a-m1.small": {
+      "variableCosts": 0.09,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2a-m1.xlarge": {
+      "variableCosts": 0.72,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2a-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2a-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2a-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2a-t1.micro": {
+      "variableCosts": 0.025,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2b-c1.medium": {
+      "variableCosts": 0.186,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2b-c1.xlarge": {
+      "variableCosts": 0.744,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2b-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2b-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2b-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2b-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2b-m1.large": {
+      "variableCosts": 0.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2b-m1.medium": {
+      "variableCosts": 0.18,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2b-m1.small": {
+      "variableCosts": 0.09,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2b-m1.xlarge": {
+      "variableCosts": 0.72,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2b-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2b-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2b-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2b-t1.micro": {
+      "variableCosts": 0.025,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2c-c1.medium": {
+      "variableCosts": 0.186,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2c-c1.xlarge": {
+      "variableCosts": 0.744,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2c-cc1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2c-cc2.8xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2c-cg1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2c-hi1.4xlarge": {
+      "variableCosts": 0.0,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2c-m1.large": {
+      "variableCosts": 0.36,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2c-m1.medium": {
+      "variableCosts": 0.18,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2c-m1.small": {
+      "variableCosts": 0.09,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2c-m1.xlarge": {
+      "variableCosts": 0.72,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2c-m2.2xlarge": {
+      "variableCosts": 1.012,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2c-m2.4xlarge": {
+      "variableCosts": 2.024,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2c-m2.xlarge": {
+      "variableCosts": 0.506,
+      "fixedCosts": 0.0
+    },
+    "aws-ec2-us-west-2c-t1.micro": {
+      "variableCosts": 0.025,
+      "fixedCosts": 0.0
+    }
+  }
+}

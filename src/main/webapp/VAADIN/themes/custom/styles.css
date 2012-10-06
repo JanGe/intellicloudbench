@@ -1,0 +1,31 @@
+@import "../runo/styles.css";
+
+.grey_background {
+	background: none repeat scroll 0% 0% rgb(233, 236, 237);
+}
+
+.white_background {
+	background: none repeat scroll 0% 0% rgb(255, 255, 255);
+}
+
+.big_checkbox {
+	min-height: 30px;
+}
+
+.big_checkbox label {
+	font-size: medium;
+	padding-left: 4px
+}
+
+.big_checkbox input { /* Double-sized Checkboxes */
+	-ms-transform: scale(1.3); /* IE */
+	-moz-transform: scale(1.3); /* FF */
+	-webkit-transform: scale(1.3); /* Safari and Chrome */
+	-o-transform: scale(1.3); /* Opera */
+	padding: 10px;
+}
+
+.footer img {
+	height: 62px;
+	margin: 40px;
+}
