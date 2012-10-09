@@ -41,7 +41,7 @@ import org.jclouds.ContextBuilder;
 import org.jclouds.compute.ComputeServiceContext;
 import org.jclouds.providers.ProviderMetadata;
 import org.jclouds.providers.Providers;
-import org.jclouds.sshj.config.SshjSshClientModule;
+import org.jclouds.ssh.jsch.config.JschSshClientModule;
 import org.vaadin.artur.icepush.ICEPush;
 
 import com.google.common.collect.ImmutableSet;
@@ -133,7 +133,7 @@ public class CloudBenchService extends Observable implements Serializable, ICred
 			provider.registerCredentialsChangedListener(this);
 			context =
 			    ContextBuilder.newBuilder(provider.getId()).credentials(credentials.getKey(), credentials.getSecret())
-			        .modules(ImmutableSet.<Module> of(new SshjSshClientModule())).buildView(ComputeServiceContext.class);
+			        .modules(ImmutableSet.<Module> of(new JschSshClientModule())).buildView(ComputeServiceContext.class);
 		}
 		return context;
 	}

@@ -267,7 +267,7 @@
         </dependency>
         <dependency>
             <groupId>org.jclouds.driver</groupId>
-            <artifactId>jclouds-sshj</artifactId>
+            <artifactId>jclouds-jsch</artifactId>
             <version>1.5.0</version>
         </dependency>
         <dependency>
