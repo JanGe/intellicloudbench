@@ -120,41 +120,27 @@ public class InstanceState extends Logger implements Serializable {
 		set(State.ABORTED, 1f, sb.toString());
 	}
 
-	private void set(State state, Float percentage, String status) {
+	public void set(State state, Float percentage, String status) {
 		log(status);
-		setState(state);
-		setPercentage(percentage);
-		setStatus(status);
+
+		this.state = state;
+		this.percentage = percentage;
+		this.status = status;
+
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public State getState() {
 		return state;
 	}
 
-	public void setState(State state) {
-		this.setChanged();
-		this.state = state;
-		this.notifyObservers();
-	}
-
 	public Float getPercentage() {
 		return percentage;
 	}
 
-	public void setPercentage(Float percentage) {
-		this.setChanged();
-		this.percentage = percentage;
-		this.notifyObservers();
-	}
-
 	public String getStatus() {
 		return status;
-	}
-
-	public void setStatus(String status) {
-		this.setChanged();
-		this.status = status;
-		this.notifyObservers();
 	}
 
 	private Duration getRunningDuration() {
