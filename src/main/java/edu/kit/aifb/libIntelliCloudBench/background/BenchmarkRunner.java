@@ -110,12 +110,18 @@ public class BenchmarkRunner extends Runner {
 
 	private NodeMetadata node;
 	private Object nodeLock = new Object();
+	private String group;
 
 	private SshClient ssh;
 
 	public BenchmarkRunner(CloudBenchService cloudBenchService, InstanceType instanceType,
 	    Collection<Benchmark> benchmarks) {
 		super(cloudBenchService, instanceType, benchmarks);
+
+		group =
+		    (getInstanceType().getRegion().getId() + "-" + getInstanceType().getHardwareType().getId()).replaceAll(
+		        "[^a-zA-Z0-9-]",
+		        "");
 	}
 
 	@Override
@@ -129,13 +135,9 @@ public class BenchmarkRunner extends Runner {
 	}
 
 	@Override
-	void initialize() throws RunNodesException {
+	void create() throws RunNodesException {
 		/* Group name identifies the region */
 		synchronized (nodeLock) {
-			String group =
-			    (getInstanceType().getRegion().getId() + "-" + getInstanceType().getHardwareType().getId()).replaceAll(
-			        "[^a-zA-Z0-9-]",
-			        "");
 			node = Iterables.getOnlyElement(service.createNodesInGroup(group, 1, template));
 			log("Node created: " + node.getId());
 		}

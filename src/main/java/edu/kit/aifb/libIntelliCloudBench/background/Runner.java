@@ -76,7 +76,7 @@ public abstract class Runner implements Runnable {
 		if (!terminate) {
 			instanceState.setInit();
 			try {
-				initialize();
+				create();
 			} catch (RunNodesException e) {
 				instanceState.setAborted(e);
 				terminate = true;
@@ -153,7 +153,7 @@ public abstract class Runner implements Runnable {
 
 	abstract void prepare();
 
-	abstract void initialize() throws RunNodesException;
+	abstract void create() throws RunNodesException;
 
 	abstract void prepareDeployment();
 

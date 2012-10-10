@@ -95,8 +95,8 @@ public class InstanceState extends Logger implements Serializable {
 
 	public void setInit() {
 		String message = "Initializing machine...";
-		startTime = System.currentTimeMillis();
 		set(State.INIT, period / 2f, message);
+		startTime = System.currentTimeMillis();
 	}
 
 	public void setAborted() {
