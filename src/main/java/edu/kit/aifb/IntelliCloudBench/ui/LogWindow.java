@@ -38,7 +38,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
-import edu.kit.aifb.IntelliCloudBench.WelcomeScreen;
+import edu.kit.aifb.libIntelliCloudBench.CloudBenchService;
 import edu.kit.aifb.libIntelliCloudBench.logging.ILogListener;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceState;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceType;
@@ -50,7 +50,10 @@ public class LogWindow extends Window implements ILogListener {
 
 	private StringBuilder sb = new StringBuilder();
 
-	public LogWindow(final InstanceState instanceState) {
+	private CloudBenchService service;
+
+	public LogWindow(final InstanceState instanceState, CloudBenchService service) {
+		this.service = service;
 
 		InstanceType instanceType = instanceState.getInstanceType();
 
@@ -108,11 +111,7 @@ public class LogWindow extends Window implements ILogListener {
 		logField.setReadOnly(true);
 		logField.setCursorPosition(log.length() - 1);
 
-		try {
-			((WelcomeScreen) getApplication()).getPusher().push();
-		} catch (NullPointerException e) {
-			/* TODO: Check why this sometimes happens */
-		}
+		service.getPusher().push();
 	}
 
 }

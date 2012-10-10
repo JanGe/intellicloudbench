@@ -88,7 +88,7 @@ public class RunningBenchmarksPanel extends Panel {
 		benchmarkingState = service.getBenchmarkingState();
 
 		for (InstanceState instanceState : service.getAllInstanceStates()) {
-			InstanceProgressComponent progress = new InstanceProgressComponent(this, instanceState);
+			InstanceProgressComponent progress = new InstanceProgressComponent(this, instanceState, service);
 			allInstanceProgressComponents.add(progress);
 			content.addComponent(progress);
 			service.getPusher().push();

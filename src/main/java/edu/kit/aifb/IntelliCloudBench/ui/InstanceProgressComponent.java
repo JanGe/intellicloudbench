@@ -46,6 +46,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.ProgressIndicator;
 import com.vaadin.ui.VerticalLayout;
 
+import edu.kit.aifb.libIntelliCloudBench.CloudBenchService;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceState;
 
 public class InstanceProgressComponent extends CustomComponent implements Observer {
@@ -63,11 +64,13 @@ public class InstanceProgressComponent extends CustomComponent implements Observ
 
 	private RunningBenchmarksPanel parent;
 	private InstanceState instanceState;
+	private CloudBenchService service;
 
-	public InstanceProgressComponent(RunningBenchmarksPanel parent, InstanceState instanceState) {
+	public InstanceProgressComponent(RunningBenchmarksPanel parent, InstanceState instanceState, CloudBenchService service) {
 		this.instanceState = instanceState;
 		this.instanceState.addObserver(this);
 		this.parent = parent;
+		this.service = service;
 
 		buildMainLayout();
 		setCompositionRoot(mainLayout);
@@ -189,7 +192,7 @@ public class InstanceProgressComponent extends CustomComponent implements Observ
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				InstanceProgressComponent.this.getWindow().addWindow(new LogWindow(instanceState));
+				InstanceProgressComponent.this.getWindow().addWindow(new LogWindow(instanceState, service));
 			};
 		});
 		verticalLayout_2.addComponent(logButton);
