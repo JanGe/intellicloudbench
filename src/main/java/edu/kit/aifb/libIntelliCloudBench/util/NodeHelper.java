@@ -43,6 +43,7 @@ import java.util.Set;
 import org.jclouds.compute.domain.ExecChannel;
 import org.jclouds.compute.domain.NodeMetadata;
 import org.jclouds.ssh.SshClient;
+import org.jclouds.ssh.SshException;
 
 import edu.kit.aifb.libIntelliCloudBench.background.BenchmarkRunner;
 import edu.kit.aifb.libIntelliCloudBench.background.RunScriptOnMachineException;
@@ -100,6 +101,11 @@ public class NodeHelper {
 				logErrorOutput(runner, command, channel, output);
 			}
 
+		} catch (SshException e) {
+			throw new RunScriptOnMachineException(
+			    Integer.MAX_VALUE,
+			    command,
+			    "Error connecting to node:\n" + e.getMessage());
 		} finally {
 			if (channel != null)
 				try {

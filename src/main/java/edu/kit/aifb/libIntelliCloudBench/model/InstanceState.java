@@ -95,8 +95,8 @@ public class InstanceState extends Logger implements Serializable {
 
 	public void setInit() {
 		String message = "Initializing machine...";
-		set(State.INIT, period / 2f, message);
 		startTime = System.currentTimeMillis();
+		set(State.INIT, period / 2f, message);
 	}
 
 	public void setAborted() {
@@ -127,6 +127,10 @@ public class InstanceState extends Logger implements Serializable {
 		this.percentage = percentage;
 		this.status = status;
 
+		forceUpdate();
+	}
+	
+	public void forceUpdate() {
 		this.setChanged();
 		this.notifyObservers();
 	}

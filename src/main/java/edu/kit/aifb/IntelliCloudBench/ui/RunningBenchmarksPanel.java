@@ -41,7 +41,6 @@ import com.vaadin.ui.VerticalLayout;
 
 import edu.kit.aifb.IntelliCloudBench.model.User;
 import edu.kit.aifb.libIntelliCloudBench.CloudBenchService;
-import edu.kit.aifb.libIntelliCloudBench.model.Benchmark;
 import edu.kit.aifb.libIntelliCloudBench.model.BenchmarkingState;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceState;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceType;
