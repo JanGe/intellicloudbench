@@ -79,8 +79,6 @@ public class ShowResultsPanel extends Panel {
 
 	private boolean costsChecked = true;
 
-	private Map<IMetricsType, Double> weights = new HashMap<IMetricsType, Double>();
-
 	private Map<InstanceType, Map<IMetricsType, Double>> relativeResults =
 	    new HashMap<InstanceType, Map<IMetricsType, Double>>();
 
@@ -293,7 +291,7 @@ public class ShowResultsPanel extends Panel {
 			StringBuilder sb = new StringBuilder(instanceType.asString(" | "));
 			sb.append(": ");
 			for (IMetricsType iMetricsType : relativeResults.get(instanceType).keySet()) {
-				Double weight = weights.get(iMetricsType);
+				Double weight = service.getMetricsConfiguration().getWeight(iMetricsType);
 				if (weight == null)
 					weight = 100d;
 				Double relativeResult = relativeResults.get(instanceType).get(iMetricsType);
@@ -405,7 +403,7 @@ public class ShowResultsPanel extends Panel {
 	}
 
 	private Slider buildWeightSlider(final IMetricsType metricsType) {
-		Double weight = weights.get(metricsType);
+		Double weight = service.getMetricsConfiguration().getWeight(metricsType);
 		if (weight == null)
 			weight = 100d;
 
@@ -425,7 +423,7 @@ public class ShowResultsPanel extends Panel {
 			private static final long serialVersionUID = -4202721080880004598L;
 
 			public void valueChange(ValueChangeEvent event) {
-				weights.put(metricsType, (Double) weightSlider.getValue());
+				service.getMetricsConfiguration().setWeight(metricsType, (Double) weightSlider.getValue());
 				VerticalLayout oldWeightedResultsLayout = weightedResultsLayout;
 				weightedResultsLayout = buildWeightedResultsLayout();
 				metricsResultLayout.replaceComponent(oldWeightedResultsLayout, weightedResultsLayout);

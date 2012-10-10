@@ -183,6 +183,7 @@ public class CloudBenchService extends Observable implements Serializable, ICred
 	}
 
 	public void terminateAllImmediately() {
+		/* TODO: Needs a check to see if the instances really terminated... */
 		for (Runner runner : runnerForInstanceType.values()) {
 			runner.terminateImmediately();
 		}

@@ -56,11 +56,11 @@ public class BenchmarkSelectionModel extends Observable {
 	}
 
 	public void select(Benchmark benchmark, Double weight) {
-		metricsConfiguration.setBenchmarkWeight(benchmark, weight);
+		metricsConfiguration.setWeight(benchmark, weight);
 	}
 
 	public void unselect(Benchmark benchmark) {
-		metricsConfiguration.clearBenchmarkWeight(benchmark);
+		metricsConfiguration.clearWeight(benchmark);
 	}
 
 	public Double getWeight(Benchmark benchmark) {
@@ -104,11 +104,11 @@ public class BenchmarkSelectionModel extends Observable {
 	}
 
 	public void selectCosts(Double weight) {
-		metricsConfiguration.setBenchmarkWeight(CostsStore.getInstance(), weight);
+		metricsConfiguration.setWeight(CostsStore.getInstance(), weight);
 	}
 
 	public void unselectCosts() {
-		metricsConfiguration.clearBenchmarkWeight(CostsStore.getInstance());
+		metricsConfiguration.clearWeight(CostsStore.getInstance());
 	}
 
 	public Double getCostsWeight() {

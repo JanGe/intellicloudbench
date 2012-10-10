@@ -59,26 +59,26 @@ public class MetricsConfiguration {
 
 	private Class<? extends IInstanceOrderer> instanceOrderer = INSTANCE_ORDERER.get(0);
 
-	private Map<IMetricsType, Double> weightsForBenchmarks = new HashMap<IMetricsType, Double>();
+	private Map<IMetricsType, Double> weightsForMetrics = new HashMap<IMetricsType, Double>();
 
 	private boolean costsBudgetSelected = false;
 	private Double costsBudget = 100d;
 	private InstanceType selectedReference;
 
-	public void setBenchmarkWeight(IMetricsType metricsType, Double weight) {
-		weightsForBenchmarks.put(metricsType, weight);
+	public void setWeight(IMetricsType metricsType, Double weight) {
+		weightsForMetrics.put(metricsType, weight);
 	}
 
-	public void clearBenchmarkWeight(IMetricsType metricsType) {
-		weightsForBenchmarks.remove(metricsType);
+	public void clearWeight(IMetricsType metricsType) {
+		weightsForMetrics.remove(metricsType);
 	}
 
 	public Double getWeight(IMetricsType metricsType) {
-		return weightsForBenchmarks.get(metricsType);
+		return weightsForMetrics.get(metricsType);
 	}
 
 	public Set<IMetricsType> getSelected() {
-		return weightsForBenchmarks.keySet();
+		return weightsForMetrics.keySet();
 	}
 
 	public Class<? extends IInstanceOrderer> getSelectedInstanceOrderer() {
