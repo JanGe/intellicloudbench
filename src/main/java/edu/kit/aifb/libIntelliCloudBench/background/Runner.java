@@ -30,37 +30,43 @@
 
 package edu.kit.aifb.libIntelliCloudBench.background;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.jclouds.compute.RunNodesException;
 
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
 
-import edu.kit.aifb.libIntelliCloudBench.CloudBenchService;
+import edu.kit.aifb.libIntelliCloudBench.IService;
 import edu.kit.aifb.libIntelliCloudBench.model.Benchmark;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceState;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceState.State;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceType;
 import edu.kit.aifb.libIntelliCloudBench.model.xml.Result;
+import edu.kit.aifb.libIntelliCloudBench.stopping.StoppingMethod;
 
 public abstract class Runner implements Runnable {
 
-	private CloudBenchService cloudBenchService;
-	private Collection<Benchmark> benchmarks;
+	private IService service;
+	private StoppingMethod stopper;
 	private InstanceType instanceType;
+	private List<Benchmark> benchmarks;
+
 	private InstanceState instanceState;
 
 	private LinkedListMultimap<Benchmark, Result> resultsForBenchmark;
 	private Set<Benchmark> failedBenchmarks = new HashSet<Benchmark>();
 
-	private volatile boolean terminate = false;
+//	private TimedStoppingTask timedStoppingTask = new TimedStoppingTask();
+//	private Timer timer;
 
-	public Runner(CloudBenchService cloudBenchService, InstanceType instanceType, Collection<Benchmark> benchmarks) {
-		this.cloudBenchService = cloudBenchService;
+	public Runner(IService service, StoppingMethod stopper, InstanceType instanceType, List<Benchmark> benchmarks) {
+		this.service = service;
+		this.stopper = stopper;
 		this.instanceType = instanceType;
 		this.benchmarks = benchmarks;
 		this.instanceState = new InstanceState(instanceType, benchmarks.size());
@@ -68,87 +74,111 @@ public abstract class Runner implements Runnable {
 
 	@Override
 	public void run() {
-		if (!terminate) {
+		if (!stopper.doesNotExceedBudgetOnStarting(this)) {
+			instanceState.setStopped();
+			log("Stopped by budget check before starting");
+			stopper.runnerStopped(this);
+			service.notifyFinished(this);
+			return;
+		}
+
+		if (!stopper.shouldTerminate(this)) {
+			instanceState.setPrepare();
 			log("Preparing initialization...");
 			prepare();
 		}
 
-		if (!terminate) {
-			instanceState.setInit();
-			try {
-				create();
-			} catch (RunNodesException e) {
-				instanceState.setAborted(e);
-				terminate = true;
-			}
-		}
+		try {
+			if (!stopper.shouldTerminate(this)) {
+				instanceState.setInit();
 
-		if (!terminate) {
-			instanceState.setDeploy();
-			prepareDeployment();
-		}
+//				timer = new Timer();
+//				timer.scheduleAtFixedRate(timedStoppingTask, (long) (55 * 60 * 1000), (long) (60 * 60 * 1000));
 
-		if (!terminate) {
-			try {
-				deploy();
-			} catch (RunScriptOnMachineException e) {
-				instanceState.setAborted(e);
-				terminate = true;
-			}
-		}
-
-		if (!terminate) {
-			int i = 1;
-			for (Benchmark benchmark : benchmarks) {
-				instanceState.setDownload(i, benchmark.getName());
 				try {
-					install(benchmark);
-				} catch (RunScriptOnMachineException e) {
-					failedBenchmarks.add(benchmark);
+					create();
+				} catch (RunNodesException e) {
+					instanceState.setAborted(e);
+					stopper.setFailed(this);
 				}
-				i++;
 			}
-		}
 
-		if (!terminate) {
-			try {
+			if (!stopper.shouldTerminate(this)) {
+				instanceState.setDeploy();
+				prepareDeployment();
+			}
+
+			if (!stopper.shouldTerminate(this)) {
+				try {
+					deploy();
+				} catch (RunScriptOnMachineException e) {
+					instanceState.setAborted(e);
+					stopper.setFailed(this);
+				}
+			}
+
+			if (!stopper.shouldTerminate(this)) {
+				int i = 1;
+				for (Benchmark benchmark : benchmarks) {
+					instanceState.setDownload(i, benchmark.getName());
+					try {
+						install(benchmark);
+					} catch (RunScriptOnMachineException e) {
+						failedBenchmarks.add(benchmark);
+					}
+					i++;
+				}
+			}
+
+			if (!stopper.shouldTerminate(this)) {
 				int i = 1;
 				for (Benchmark benchmark : benchmarks) {
 					instanceState.setRun(i, benchmark.getName());
-					runBenchmark(benchmark);
+					try {
+						runBenchmark(benchmark);
+					} catch (RunScriptOnMachineException e) {
+						failedBenchmarks.add(benchmark);
+					}
+
+					instanceState.setUpload(i, benchmark.getName());
+					try {
+						resultsForBenchmark = upload(benchmark);
+						stopper.updateResults(this, resultsForBenchmark);
+						stopper.notifyBenchmarkDone(this, benchmark);
+					} catch (ParseXmlResultException | RunScriptOnMachineException e) {
+						instanceState.setAborted(e);
+						stopper.setFailed(this);
+					}
+
 					i++;
 				}
-			} catch (RunScriptOnMachineException e) {
-				instanceState.setAborted(e);
-				terminate = true;
 			}
+		} catch (Exception e) {
+			/* Catch every exception, so started machines are terminated */
+			e.printStackTrace();
+			instanceState.setAborted(e);
+			stopper.setFailed(this);
 		}
 
-		if (!terminate) {
-			instanceState.setUpload();
-			try {
-				resultsForBenchmark = upload();
-			} catch (ParseXmlResultException | RunScriptOnMachineException e) {
-				instanceState.setAborted(e);
-				terminate = true;
-			}
-		}
+//		if (timer != null)
+//			timer.cancel();
 
-		if (!terminate) {
+		if (!stopper.shouldTerminate(this)) {
 
 			cleanUp();
 			log("Terminated machine normally.");
 			instanceState.setDone();
+			stopper.runnerDone(this);
 
 		} else {
 
 			cleanUp();
 			if (instanceState.getState() != State.ABORTED)
 				instanceState.setAborted();
+			stopper.runnerAborted(this);
 
 		}
-		cloudBenchService.notifyDone(this);
-
+		service.notifyFinished(this);
 	}
 
 	abstract void prepare();
@@ -163,7 +193,8 @@ public abstract class Runner implements Runnable {
 
 	abstract void runBenchmark(Benchmark benchmark) throws RunScriptOnMachineException;
 
-	abstract LinkedListMultimap<Benchmark, Result> upload() throws ParseXmlResultException, RunScriptOnMachineException;
+	abstract LinkedListMultimap<Benchmark, Result> upload(Benchmark benchmark) throws ParseXmlResultException,
+	    RunScriptOnMachineException;
 
 	abstract void cleanUp();
 
@@ -180,6 +211,7 @@ public abstract class Runner implements Runnable {
 	public InstanceState getInstanceState() {
 		return instanceState;
 	}
+	
 
 	public List<Result> getResultsForBenchmark(Benchmark benchmark) {
 		return resultsForBenchmark.get(benchmark);
@@ -189,22 +221,43 @@ public abstract class Runner implements Runnable {
 		return resultsForBenchmark;
 	}
 
-	public CloudBenchService getCloudBenchService() {
-		return cloudBenchService;
-	}
-
 	public InstanceType getInstanceType() {
 		return instanceType;
 	}
 
-	public Collection<Benchmark> getBenchmarks() {
+	public List<Benchmark> getBenchmarks() {
 		return benchmarks;
+	}
+
+	public IService getService() {
+		return service;
 	}
 
 	public final void terminateImmediately() {
 		log("Trying to terminate the instance immediately...");
+//		if (timer != null)
+//			timer.cancel();
 		terminate();
+		service.notifyFinished(this);
 		log("Instance terminated.");
 	}
+
+//	private class TimedStoppingTask extends TimerTask {
+//
+//		@Override
+//		public void run() {
+//			if (stopper != null)
+//				if (!stopper.doesNotExceedBudget(Runner.this)) {
+//					terminateImmediately();
+//					instanceState.setStopped();
+//					log("Stopped by budget check...");
+//					stopper.runnerStopped(Runner.this);
+//					service.notifyFinished(Runner.this);
+//				} else {
+//					stopper.timedNotify(Runner.this);
+//				}
+//		}
+//
+//	}
 
 }

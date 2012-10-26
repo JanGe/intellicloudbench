@@ -32,6 +32,7 @@ package edu.kit.aifb.IntelliCloudBench.ui;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Label;
@@ -41,6 +42,7 @@ import com.vaadin.ui.VerticalLayout;
 
 import edu.kit.aifb.IntelliCloudBench.model.User;
 import edu.kit.aifb.libIntelliCloudBench.CloudBenchService;
+import edu.kit.aifb.libIntelliCloudBench.background.Runner;
 import edu.kit.aifb.libIntelliCloudBench.model.BenchmarkingState;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceState;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceType;
@@ -58,7 +60,7 @@ public class RunningBenchmarksPanel extends Panel {
 	
 	private Collection<InstanceProgressComponent> allInstanceProgressComponents = new LinkedList<InstanceProgressComponent>();
 
-	private Collection<InstanceType> instances;
+	private List<InstanceType> instances;
 
 	public RunningBenchmarksPanel(String caption, User user) {
 		super();
@@ -82,8 +84,8 @@ public class RunningBenchmarksPanel extends Panel {
 		content.setComponentAlignment(globalStatus, Alignment.MIDDLE_CENTER);
 	}
 
-	public void initAndStartBenchmarking() {
-		service.prepareBenchmarking(instances);
+	public void initAndStartBenchmarking(Class<? extends Runner> runnerClass) {
+		service.prepareBenchmarking(instances, runnerClass);
 		
 		benchmarkingState = service.getBenchmarkingState();
 

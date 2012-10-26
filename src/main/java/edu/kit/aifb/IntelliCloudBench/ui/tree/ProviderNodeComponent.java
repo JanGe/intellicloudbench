@@ -47,7 +47,6 @@ import com.vaadin.ui.Window.CloseEvent;
 import com.vaadin.ui.Window.CloseListener;
 
 import edu.kit.aifb.IntelliCloudBench.ui.CredentialsWindow;
-import edu.kit.aifb.IntelliCloudBench.ui.model.BenchmarkSelectionModel;
 import edu.kit.aifb.libIntelliCloudBench.CloudBenchService;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceType;
 import edu.kit.aifb.libIntelliCloudBench.model.NotReadyException;

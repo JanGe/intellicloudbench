@@ -105,6 +105,14 @@ public class HardwareType implements Serializable, Comparable<HardwareType> {
   	return cpus;
   }
 	
+	public Double getSummarizedCpuSpeed() {
+		Double sum = 0d;
+		for (Cpu cpu : cpus) {
+			sum += cpu.getSummarizedSpeed();
+		}
+		return sum;
+	}
+	
 	public String getCpusAsString() {
 		String[] pairs = new String[cpus.size()];
 		int i = 0;

@@ -114,7 +114,7 @@ public class InstanceProgressComponent extends CustomComponent implements Observ
 		costsLabel.setWidth("100%");
 		costsLabel.setHeight("100%");
 		mainLayout.addComponent(costsLabel);
-		mainLayout.setExpandRatio(costsLabel, 0.2f);
+		mainLayout.setExpandRatio(costsLabel, 0.4f);
 		mainLayout.setComponentAlignment(costsLabel, Alignment.MIDDLE_LEFT);
 
 		return mainLayout;

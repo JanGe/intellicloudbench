@@ -96,6 +96,7 @@ public class Benchmark implements IMetricsType, Serializable {
 	    "ffte-1.0.1",
 	    "gcrypt-1.0.0",
 	    "gnupg-1.3.1",
+	    "hdparm-read-1.0.0",
 	    "idle-1.1.0",
 	    "idle-power-usage-1.0.0",
 	    "interbench-1.0.1",

@@ -160,10 +160,9 @@ public class Provider extends Observable implements Serializable {
 
 			@Override
 			public void onFailure(Throwable t) {
-				try {
-					throw t;
-				} catch (Throwable e) {
-					e.printStackTrace();
+				t.printStackTrace();
+				synchronized (observer) {
+					observer.update(Provider.this, t);
 				}
 			}
 
@@ -200,10 +199,9 @@ public class Provider extends Observable implements Serializable {
 
 			@Override
 			public void onFailure(Throwable t) {
-				try {
-					throw t;
-				} catch (Throwable e) {
-					e.printStackTrace();
+				t.printStackTrace();
+				synchronized (observer) {
+					observer.update(Provider.this, t);
 				}
 			}
 

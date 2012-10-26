@@ -69,20 +69,23 @@ public class NodeHelper {
 		return foundNodes;
 	}
 
-	public static String runScript(BenchmarkRunner runner, SshClient ssh, String command)
+	public static String runScript(BenchmarkRunner runner, SshClient ssh, ExecChannel channel, String command)
 	    throws RunScriptOnMachineException {
-		return runScript(runner, ssh, command, null);
+		return runScript(runner, ssh, channel, command, null);
 	}
 
-	public static String runScript(BenchmarkRunner runner, SshClient ssh, String command, String input)
-	    throws RunScriptOnMachineException {
+	public static String runScript(BenchmarkRunner runner, SshClient ssh, ExecChannel channel, String command,
+	    String input) throws RunScriptOnMachineException {
 		runner.log("$ " + command);
 
 		String output = "";
-		
-		ExecChannel channel = null;
+
 		try {
-			channel = ssh.execChannel(command);
+			if (channel == null) {
+				channel = ssh.execChannel(command);
+			} else {
+				throw new SshException("A channel before was not correctly closed.");
+			}
 
 			if (input != null) {
 				try {
@@ -102,55 +105,30 @@ public class NodeHelper {
 			}
 
 		} catch (SshException e) {
-			throw new RunScriptOnMachineException(
-			    Integer.MAX_VALUE,
-			    command,
-			    "Error connecting to node:\n" + e.getMessage());
+			throw new RunScriptOnMachineException(Integer.MAX_VALUE, command, "Error connecting to node:\n" + e.getMessage());
 		} finally {
 			if (channel != null)
 				try {
 					channel.close();
 				} catch (IOException e) {
+					runner.log("IOException when trying to close channel: " + e.getMessage());
 					e.printStackTrace();
+				} finally {
+					channel = null;
 				}
 		}
 
 		return output;
 	}
 
-	private static void logErrorOutput(BenchmarkRunner runner, String command, ExecChannel channel, String output)
-	    throws RunScriptOnMachineException {
-		Integer exitCode = channel.getExitStatus().get();
-		if ((exitCode != null) && (exitCode != 0)) {
-			InputStream errorIs = channel.getError();
-			BufferedReader errorReader = new BufferedReader(new InputStreamReader(errorIs));
+	private static void setInput(BenchmarkRunner runner, String input, ExecChannel channel) throws IOException {
+		OutputStream os = channel.getInput();
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os));
 
-			String line;
-			StringBuilder errorSb = new StringBuilder();
-			try {
-				while ((line = errorReader.readLine()) != null) {
-					runner.appendToLog(line);
-					errorSb.append(line);
-					errorSb.append("\n");
-				}
-			} catch (IOException e) {
-				try {
-					channel.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				errorSb.append("\n");
-				errorSb.append(e.getMessage());
-				throw new RunScriptOnMachineException(Integer.MIN_VALUE, command, errorSb.toString());
-			}
+		writer.append(input);
+		writer.flush();
 
-			try {
-				channel.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			throw new RunScriptOnMachineException(exitCode, command, output);
-		}
+		writer.close();
 	}
 
 	private static String getOutput(BenchmarkRunner runner, String command, ExecChannel channel)
@@ -172,25 +150,35 @@ public class NodeHelper {
 				// "Benchmark could not be installed:\n" + sb.toString());
 				// }
 			}
-		} catch (IOException e) {
-			try {
-				channel.close();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+		} catch (Exception e) {
 			sb.append(e.getMessage());
 			throw new RunScriptOnMachineException(Integer.MIN_VALUE, command, sb.toString());
 		}
 		return sb.toString();
 	}
 
-	private static void setInput(BenchmarkRunner runner, String input, ExecChannel channel) throws IOException {
-		OutputStream os = channel.getInput();
-		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os));
+	private static void logErrorOutput(BenchmarkRunner runner, String command, ExecChannel channel, String output)
+	    throws RunScriptOnMachineException {
+		Integer exitCode = channel.getExitStatus().get();
+		if ((exitCode != null) && (exitCode != 0)) {
+			InputStream errorIs = channel.getError();
+			BufferedReader errorReader = new BufferedReader(new InputStreamReader(errorIs));
 
-		writer.append(input);
-		writer.flush();
+			String line;
+			StringBuilder errorSb = new StringBuilder();
+			try {
+				while ((line = errorReader.readLine()) != null) {
+					runner.appendToLog(line);
+					errorSb.append(line);
+					errorSb.append("\n");
+				}
+			} catch (IOException e) {
+				errorSb.append("\n");
+				errorSb.append(e.getMessage());
+				throw new RunScriptOnMachineException(Integer.MIN_VALUE, command, errorSb.toString());
+			}
 
-		writer.close();
+			throw new RunScriptOnMachineException(exitCode, command, output);
+		}
 	}
 }

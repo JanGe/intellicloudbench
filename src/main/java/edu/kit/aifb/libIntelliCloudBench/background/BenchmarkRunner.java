@@ -37,15 +37,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.jclouds.compute.ComputeService;
 import org.jclouds.compute.RunNodesException;
+import org.jclouds.compute.domain.ExecChannel;
 import org.jclouds.compute.domain.NodeMetadata;
 import org.jclouds.compute.domain.OsFamily;
 import org.jclouds.compute.domain.Template;
+import org.jclouds.compute.domain.TemplateBuilder;
 import org.jclouds.io.payloads.FilePayload;
 import org.jclouds.ssh.SshClient;
 import org.jclouds.ssh.SshException;
@@ -55,11 +57,12 @@ import org.simpleframework.xml.core.Persister;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.LinkedListMultimap;
 
-import edu.kit.aifb.libIntelliCloudBench.CloudBenchService;
+import edu.kit.aifb.libIntelliCloudBench.IService;
 import edu.kit.aifb.libIntelliCloudBench.model.Benchmark;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceType;
 import edu.kit.aifb.libIntelliCloudBench.model.xml.BenchmarkResult;
 import edu.kit.aifb.libIntelliCloudBench.model.xml.Result;
+import edu.kit.aifb.libIntelliCloudBench.stopping.StoppingMethod;
 import edu.kit.aifb.libIntelliCloudBench.util.NodeHelper;
 
 public class BenchmarkRunner extends Runner {
@@ -113,10 +116,17 @@ public class BenchmarkRunner extends Runner {
 	private String group;
 
 	private SshClient ssh;
+	private ExecChannel channel = null;
 
-	public BenchmarkRunner(CloudBenchService cloudBenchService, InstanceType instanceType,
-	    Collection<Benchmark> benchmarks) {
-		super(cloudBenchService, instanceType, benchmarks);
+	/*
+	 * Some providers (e.g. Amazon) doesn't like when we call to often
+	 * simultaneously, so synchronize the accesses
+	 */
+	private static Object globalSynchronizer = new Object();
+
+	public BenchmarkRunner(IService service, StoppingMethod stopper, InstanceType instanceType,
+	    List<Benchmark> benchmarks) {
+		super(service, stopper, instanceType, benchmarks);
 
 		group =
 		    (getInstanceType().getRegion().getId() + "-" + getInstanceType().getHardwareType().getId()).replaceAll(
@@ -126,12 +136,15 @@ public class BenchmarkRunner extends Runner {
 
 	@Override
 	void prepare() {
-		this.service = getCloudBenchService().getContext(getInstanceType().getProvider()).getComputeService();
-		this.template =
+		this.service = getService().getComputeService(getInstanceType().getProvider());
+		TemplateBuilder templateBuilder =
 		    service.templateBuilder().hardwareId(getInstanceType().getHardwareType().getId())
 		        .locationId(getInstanceType().getRegion().getId()).osFamily(TEMPLATE_OS)
-		        .osVersionMatches(TEMPLATE_OS_VERSION).os64Bit(true).build();
-		template.getOptions().userMetadata("Name", getCloudBenchService().getName());
+		        .osVersionMatches(TEMPLATE_OS_VERSION).os64Bit(true);
+		synchronized (globalSynchronizer) {
+			this.template = templateBuilder.build();
+		}
+		template.getOptions().userMetadata("Name", getService().getName());
 	}
 
 	@Override
@@ -194,7 +207,7 @@ public class BenchmarkRunner extends Runner {
 	}
 
 	@Override
-	LinkedListMultimap<Benchmark, Result> upload() throws ParseXmlResultException, RunScriptOnMachineException {
+	LinkedListMultimap<Benchmark, Result> upload(Benchmark benchmark) throws ParseXmlResultException, RunScriptOnMachineException {
 		try {
 			if (ssh != null)
 				return uploadResults(ssh);
@@ -228,7 +241,7 @@ public class BenchmarkRunner extends Runner {
 
 	private void setupPHP(SshClient ssh) throws RunScriptOnMachineException {
 		for (String command : SETUP_PHP_COMMANDS) {
-			NodeHelper.runScript(this, ssh, command);
+			NodeHelper.runScript(this, ssh, channel, command);
 		}
 	}
 
@@ -246,23 +259,23 @@ public class BenchmarkRunner extends Runner {
 
 		/* Just to make sure the destination directories are there */
 		try {
-			NodeHelper.runScript(this, ssh, DEPLOY_PTS_COMMANDS[0]);
+			NodeHelper.runScript(this, ssh, channel, DEPLOY_PTS_COMMANDS[0]);
 		} catch (RunScriptOnMachineException e) {
 		}
 		try {
-			NodeHelper.runScript(this, ssh, DEPLOY_PTS_COMMANDS[1]);
+			NodeHelper.runScript(this, ssh, channel, DEPLOY_PTS_COMMANDS[1]);
 		} catch (RunScriptOnMachineException e) {
 		}
 
 		for (int i = 2; i < DEPLOY_PTS_COMMANDS.length; i++) {
-			NodeHelper.runScript(this, ssh, DEPLOY_PTS_COMMANDS[i]);
+			NodeHelper.runScript(this, ssh, channel, DEPLOY_PTS_COMMANDS[i]);
 		}
 	}
 
 	private void installBenchmark(SshClient ssh, Benchmark benchmark) throws RunScriptOnMachineException {
 		/* Install the benchmark using PTS */
-		NodeHelper.runScript(this, ssh, "cd " + PTS_DEPLOYMENT_PATH + "/" + PTS_DIR_NAME + " && sudo ./" + PTS_EXECUTABLE
-		    + " batch-install " + benchmark.getId());
+		NodeHelper.runScript(this, ssh, channel, "cd " + PTS_DEPLOYMENT_PATH + "/" + PTS_DIR_NAME + " && sudo ./"
+		    + PTS_EXECUTABLE + " batch-install " + benchmark.getId());
 	}
 
 	private void runBenchmark(SshClient ssh, Benchmark benchmark) throws RunScriptOnMachineException {
@@ -279,17 +292,17 @@ public class BenchmarkRunner extends Runner {
 		}
 
 		/* Install the benchmark using PTS */
-		NodeHelper.runScript(this, ssh, "cd " + PTS_DEPLOYMENT_PATH + "/" + PTS_DIR_NAME + " && sudo ./" + PTS_EXECUTABLE
-		    + " batch-run " + benchmark.getId(), sb.toString());
+		NodeHelper.runScript(this, ssh, channel, "cd " + PTS_DEPLOYMENT_PATH + "/" + PTS_DIR_NAME + " && sudo ./"
+		    + PTS_EXECUTABLE + " batch-run " + benchmark.getId(), sb.toString());
 	}
 
 	private LinkedListMultimap<Benchmark, Result> uploadResults(SshClient ssh) throws ParseXmlResultException,
 	    RunScriptOnMachineException {
 		/* Get contents of benchmark result directory */
 		/* TODO: stop doing bad things */
-		NodeHelper.runScript(this, ssh, UPLOAD_COMMANDS[0]);
-		NodeHelper.runScript(this, ssh, UPLOAD_COMMANDS[1]);
-		String output = NodeHelper.runScript(this, ssh, UPLOAD_COMMANDS[2]);
+		NodeHelper.runScript(this, ssh, channel, UPLOAD_COMMANDS[0]);
+		NodeHelper.runScript(this, ssh, channel, UPLOAD_COMMANDS[1]);
+		String output = NodeHelper.runScript(this, ssh, channel, UPLOAD_COMMANDS[2]);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(output.getBytes())));
 
 		/* Get all result directories */
@@ -313,7 +326,7 @@ public class BenchmarkRunner extends Runner {
 
 			String command = "sudo chmod 644 " + resultFilePath;
 			try {
-				NodeHelper.runScript(this, ssh, command);
+				NodeHelper.runScript(this, ssh, channel, command);
 			} catch (RunScriptOnMachineException e) {
 				log("Continuing on " + e.getClass().getSimpleName() + ": " + e.getMessage());
 			}
@@ -321,7 +334,7 @@ public class BenchmarkRunner extends Runner {
 			log("Trying to parse this benchmark result file:");
 
 			try {
-				String xml = NodeHelper.runScript(this, ssh, "sudo cat " + resultFilePath);
+				String xml = NodeHelper.runScript(this, ssh, channel, "sudo cat " + resultFilePath);
 
 				InputStream is = new ByteArrayInputStream(xml.getBytes());
 
@@ -341,7 +354,7 @@ public class BenchmarkRunner extends Runner {
 				}
 
 			} catch (RunScriptOnMachineException e) {
-				log("Continuing on " + e.getClass().getSimpleName() + ": " + e.getMessage());
+				throw e;
 			} catch (Exception e) {
 				ParseXmlResultException ex = new ParseXmlResultException(e.getMessage());
 				log("Continuing on " + ex.getClass().getSimpleName() + ": " + ex.getMessage());
@@ -359,7 +372,7 @@ public class BenchmarkRunner extends Runner {
 			log(e.getMessage());
 		}
 		for (String command : INIT_PACKAGE_INSTALLATION_COMMANDS) {
-			NodeHelper.runScript(this, ssh, command);
+			NodeHelper.runScript(this, ssh, channel, command);
 		}
 	}
 

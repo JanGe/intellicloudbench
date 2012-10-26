@@ -52,4 +52,8 @@ public class Cpu implements Serializable {
 	public double getSpeed() {
   	return speed;
   }
+	
+	public double getSummarizedSpeed() {
+		return cores * speed;
+	}
 }

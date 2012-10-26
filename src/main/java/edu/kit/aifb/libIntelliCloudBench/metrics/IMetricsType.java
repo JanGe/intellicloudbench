@@ -31,5 +31,8 @@
 package edu.kit.aifb.libIntelliCloudBench.metrics;
 
 public interface IMetricsType {
+	
+	public String getId();
+	
 	public String getName();
 }

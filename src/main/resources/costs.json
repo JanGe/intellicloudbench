@@ -793,47 +793,47 @@
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1-cc1.4xlarge": {
-      "variableCosts": 0.9,
+      "variableCosts": 1.3,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1-cc2.8xlarge": {
-      "variableCosts": 2.7,
+      "variableCosts": 2.4,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1-cg1.4xlarge": {
-      "variableCosts": 2.36,
+      "variableCosts": 2.1,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1-hi1.4xlarge": {
-      "variableCosts": 3.41,
+      "variableCosts": 3.1,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1-m1.large": {
-      "variableCosts": 0.34,
+      "variableCosts": 0.32,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1-m1.medium": {
-      "variableCosts": 0.17,
+      "variableCosts": 0.16,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1-m1.small": {
-      "variableCosts": 0.085,
+      "variableCosts": 0.08,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1-m1.xlarge": {
-      "variableCosts": 0.68,
+      "variableCosts": 0.64,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1-m2.2xlarge": {
-      "variableCosts": 1.012,
+      "variableCosts": 0.9,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1-m2.4xlarge": {
-      "variableCosts": 2.024,
+      "variableCosts": 1.8,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1-m2.xlarge": {
-      "variableCosts": 0.506,
+      "variableCosts": 0.45,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1-t1.micro": {
@@ -849,47 +849,47 @@
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1a-cc1.4xlarge": {
-      "variableCosts": 0.9,
+      "variableCosts": 1.3,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1a-cc2.8xlarge": {
-      "variableCosts": 2.7,
+      "variableCosts": 2.4,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1a-cg1.4xlarge": {
-      "variableCosts": 2.36,
+      "variableCosts": 2.1,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1a-hi1.4xlarge": {
-      "variableCosts": 3.41,
+      "variableCosts": 3.1,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1a-m1.large": {
-      "variableCosts": 0.34,
+      "variableCosts": 0.32,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1a-m1.medium": {
-      "variableCosts": 0.17,
+      "variableCosts": 0.16,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1a-m1.small": {
-      "variableCosts": 0.085,
+      "variableCosts": 0.08,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1a-m1.xlarge": {
-      "variableCosts": 0.68,
+      "variableCosts": 0.64,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1a-m2.2xlarge": {
-      "variableCosts": 1.012,
+      "variableCosts": 0.9,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1a-m2.4xlarge": {
-      "variableCosts": 2.024,
+      "variableCosts": 1.8,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1a-m2.xlarge": {
-      "variableCosts": 0.506,
+      "variableCosts": 0.45,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1a-t1.micro": {
@@ -905,47 +905,47 @@
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1b-cc1.4xlarge": {
-      "variableCosts": 0.9,
+      "variableCosts": 1.3,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1b-cc2.8xlarge": {
-      "variableCosts": 2.7,
+      "variableCosts": 2.4,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1b-cg1.4xlarge": {
-      "variableCosts": 2.36,
+      "variableCosts": 2.1,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1b-hi1.4xlarge": {
-      "variableCosts": 3.41,
+      "variableCosts": 3.1,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1b-m1.large": {
-      "variableCosts": 0.34,
+      "variableCosts": 0.32,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1b-m1.medium": {
-      "variableCosts": 0.17,
+      "variableCosts": 0.16,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1b-m1.small": {
-      "variableCosts": 0.085,
+      "variableCosts": 0.08,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1b-m1.xlarge": {
-      "variableCosts": 0.68,
+      "variableCosts": 0.64,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1b-m2.2xlarge": {
-      "variableCosts": 1.012,
+      "variableCosts": 0.9,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1b-m2.4xlarge": {
-      "variableCosts": 2.024,
+      "variableCosts": 1.8,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1b-m2.xlarge": {
-      "variableCosts": 0.506,
+      "variableCosts": 0.45,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1b-t1.micro": {
@@ -961,47 +961,47 @@
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1c-cc1.4xlarge": {
-      "variableCosts": 0.9,
+      "variableCosts": 1.3,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1c-cc2.8xlarge": {
-      "variableCosts": 2.7,
+      "variableCosts": 2.4,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1c-cg1.4xlarge": {
-      "variableCosts": 2.36,
+      "variableCosts": 2.1,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1c-hi1.4xlarge": {
-      "variableCosts": 3.41,
+      "variableCosts": 3.1,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1c-m1.large": {
-      "variableCosts": 0.34,
+      "variableCosts": 0.32,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1c-m1.medium": {
-      "variableCosts": 0.17,
+      "variableCosts": 0.16,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1c-m1.small": {
-      "variableCosts": 0.085,
+      "variableCosts": 0.08,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1c-m1.xlarge": {
-      "variableCosts": 0.68,
+      "variableCosts": 0.64,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1c-m2.2xlarge": {
-      "variableCosts": 1.012,
+      "variableCosts": 0.9,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1c-m2.4xlarge": {
-      "variableCosts": 2.024,
+      "variableCosts": 1.8,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1c-m2.xlarge": {
-      "variableCosts": 0.506,
+      "variableCosts": 0.45,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1c-t1.micro": {
@@ -1017,47 +1017,47 @@
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1d-cc1.4xlarge": {
-      "variableCosts": 0.9,
+      "variableCosts": 1.3,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1d-cc2.8xlarge": {
-      "variableCosts": 2.7,
+      "variableCosts": 2.4,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1d-cg1.4xlarge": {
-      "variableCosts": 2.36,
+      "variableCosts": 2.1,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1d-hi1.4xlarge": {
-      "variableCosts": 3.41,
+      "variableCosts": 3.1,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1d-m1.large": {
-      "variableCosts": 0.34,
+      "variableCosts": 0.32,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1d-m1.medium": {
-      "variableCosts": 0.17,
+      "variableCosts": 0.16,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1d-m1.small": {
-      "variableCosts": 0.085,
+      "variableCosts": 0.08,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1d-m1.xlarge": {
-      "variableCosts": 0.68,
+      "variableCosts": 0.64,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1d-m2.2xlarge": {
-      "variableCosts": 1.012,
+      "variableCosts": 0.9,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1d-m2.4xlarge": {
-      "variableCosts": 2.024,
+      "variableCosts": 1.8,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1d-m2.xlarge": {
-      "variableCosts": 0.506,
+      "variableCosts": 0.45,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-east-1d-t1.micro": {
@@ -1233,11 +1233,11 @@
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2-c1.medium": {
-      "variableCosts": 0.186,
+      "variableCosts": 0.165,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2-c1.xlarge": {
-      "variableCosts": 0.744,
+      "variableCosts": 0.66,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2-cc1.4xlarge": {
@@ -1257,43 +1257,43 @@
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2-m1.large": {
-      "variableCosts": 0.36,
+      "variableCosts": 0.32,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2-m1.medium": {
-      "variableCosts": 0.18,
+      "variableCosts": 0.16,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2-m1.small": {
-      "variableCosts": 0.09,
+      "variableCosts": 0.08,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2-m1.xlarge": {
-      "variableCosts": 0.72,
+      "variableCosts": 0.64,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2-m2.2xlarge": {
-      "variableCosts": 1.012,
+      "variableCosts": 0.9,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2-m2.4xlarge": {
-      "variableCosts": 2.024,
+      "variableCosts": 1.8,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2-m2.xlarge": {
-      "variableCosts": 0.506,
+      "variableCosts": 0.45,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2-t1.micro": {
-      "variableCosts": 0.025,
+      "variableCosts": 0.02,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2a-c1.medium": {
-      "variableCosts": 0.186,
+      "variableCosts": 0.165,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2a-c1.xlarge": {
-      "variableCosts": 0.744,
+      "variableCosts": 0.66,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2a-cc1.4xlarge": {
@@ -1313,43 +1313,43 @@
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2a-m1.large": {
-      "variableCosts": 0.36,
+      "variableCosts": 0.32,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2a-m1.medium": {
-      "variableCosts": 0.18,
+      "variableCosts": 0.16,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2a-m1.small": {
-      "variableCosts": 0.09,
+      "variableCosts": 0.08,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2a-m1.xlarge": {
-      "variableCosts": 0.72,
+      "variableCosts": 0.64,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2a-m2.2xlarge": {
-      "variableCosts": 1.012,
+      "variableCosts": 0.9,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2a-m2.4xlarge": {
-      "variableCosts": 2.024,
+      "variableCosts": 1.8,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2a-m2.xlarge": {
-      "variableCosts": 0.506,
+      "variableCosts": 0.45,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2a-t1.micro": {
-      "variableCosts": 0.025,
+      "variableCosts": 0.02,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2b-c1.medium": {
-      "variableCosts": 0.186,
+      "variableCosts": 0.165,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2b-c1.xlarge": {
-      "variableCosts": 0.744,
+      "variableCosts": 0.66,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2b-cc1.4xlarge": {
@@ -1369,43 +1369,43 @@
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2b-m1.large": {
-      "variableCosts": 0.36,
+      "variableCosts": 0.32,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2b-m1.medium": {
-      "variableCosts": 0.18,
+      "variableCosts": 0.16,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2b-m1.small": {
-      "variableCosts": 0.09,
+      "variableCosts": 0.08,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2b-m1.xlarge": {
-      "variableCosts": 0.72,
+      "variableCosts": 0.64,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2b-m2.2xlarge": {
-      "variableCosts": 1.012,
+      "variableCosts": 0.9,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2b-m2.4xlarge": {
-      "variableCosts": 2.024,
+      "variableCosts": 1.8,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2b-m2.xlarge": {
-      "variableCosts": 0.506,
+      "variableCosts": 0.45,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2b-t1.micro": {
-      "variableCosts": 0.025,
+      "variableCosts": 0.02,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2c-c1.medium": {
-      "variableCosts": 0.186,
+      "variableCosts": 0.165,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2c-c1.xlarge": {
-      "variableCosts": 0.744,
+      "variableCosts": 0.66,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2c-cc1.4xlarge": {
@@ -1425,35 +1425,251 @@
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2c-m1.large": {
-      "variableCosts": 0.36,
+      "variableCosts": 0.32,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2c-m1.medium": {
-      "variableCosts": 0.18,
+      "variableCosts": 0.16,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2c-m1.small": {
-      "variableCosts": 0.09,
+      "variableCosts": 0.08,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2c-m1.xlarge": {
-      "variableCosts": 0.72,
+      "variableCosts": 0.64,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2c-m2.2xlarge": {
-      "variableCosts": 1.012,
+      "variableCosts": 0.9,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2c-m2.4xlarge": {
-      "variableCosts": 2.024,
+      "variableCosts": 1.8,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2c-m2.xlarge": {
-      "variableCosts": 0.506,
+      "variableCosts": 0.45,
       "fixedCosts": 0.0
     },
     "aws-ec2-us-west-2c-t1.micro": {
-      "variableCosts": 0.025,
+      "variableCosts": 0.02,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-1.region-a.geo-1/100": {
+      "variableCosts": 0.04,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-1.region-a.geo-1/101": {
+      "variableCosts": 0.08,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-1.region-a.geo-1/102": {
+      "variableCosts": 0.16,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-1.region-a.geo-1/103": {
+      "variableCosts": 0.32,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-1.region-a.geo-1/104": {
+      "variableCosts": 0.64,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-1.region-a.geo-1/105": {
+      "variableCosts": 1.28,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-2.region-a.geo-1/100": {
+      "variableCosts": 0.04,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-2.region-a.geo-1/101": {
+      "variableCosts": 0.08,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-2.region-a.geo-1/102": {
+      "variableCosts": 0.16,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-2.region-a.geo-1/103": {
+      "variableCosts": 0.32,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-2.region-a.geo-1/104": {
+      "variableCosts": 0.64,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-2.region-a.geo-1/105": {
+      "variableCosts": 1.28,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-3.region-a.geo-1/100": {
+      "variableCosts": 0.04,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-3.region-a.geo-1/101": {
+      "variableCosts": 0.08,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-3.region-a.geo-1/102": {
+      "variableCosts": 0.16,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-3.region-a.geo-1/103": {
+      "variableCosts": 0.32,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-3.region-a.geo-1/104": {
+      "variableCosts": 0.64,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-1.region-a.geo-1-az-3.region-a.geo-1/105": {
+      "variableCosts": 1.28,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-1.region-a.geo-1/100": {
+      "variableCosts": 0.04,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-1.region-a.geo-1/101": {
+      "variableCosts": 0.08,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-1.region-a.geo-1/102": {
+      "variableCosts": 0.16,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-1.region-a.geo-1/103": {
+      "variableCosts": 0.32,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-1.region-a.geo-1/104": {
+      "variableCosts": 0.64,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-1.region-a.geo-1/105": {
+      "variableCosts": 1.28,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-2.region-a.geo-1/100": {
+      "variableCosts": 0.04,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-2.region-a.geo-1/101": {
+      "variableCosts": 0.08,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-2.region-a.geo-1/102": {
+      "variableCosts": 0.16,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-2.region-a.geo-1/103": {
+      "variableCosts": 0.32,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-2.region-a.geo-1/104": {
+      "variableCosts": 0.64,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-2.region-a.geo-1/105": {
+      "variableCosts": 1.28,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-3.region-a.geo-1/100": {
+      "variableCosts": 0.04,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-3.region-a.geo-1/101": {
+      "variableCosts": 0.08,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-3.region-a.geo-1/102": {
+      "variableCosts": 0.16,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-3.region-a.geo-1/103": {
+      "variableCosts": 0.32,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-3.region-a.geo-1/104": {
+      "variableCosts": 0.64,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-2.region-a.geo-1-az-3.region-a.geo-1/105": {
+      "variableCosts": 1.28,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-1.region-a.geo-1/100": {
+      "variableCosts": 0.04,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-1.region-a.geo-1/101": {
+      "variableCosts": 0.08,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-1.region-a.geo-1/102": {
+      "variableCosts": 0.16,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-1.region-a.geo-1/103": {
+      "variableCosts": 0.32,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-1.region-a.geo-1/104": {
+      "variableCosts": 0.64,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-1.region-a.geo-1/105": {
+      "variableCosts": 1.28,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-2.region-a.geo-1/100": {
+      "variableCosts": 0.04,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-2.region-a.geo-1/101": {
+      "variableCosts": 0.08,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-2.region-a.geo-1/102": {
+      "variableCosts": 0.16,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-2.region-a.geo-1/103": {
+      "variableCosts": 0.32,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-2.region-a.geo-1/104": {
+      "variableCosts": 0.64,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-2.region-a.geo-1/105": {
+      "variableCosts": 1.28,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-3.region-a.geo-1/100": {
+      "variableCosts": 0.04,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-3.region-a.geo-1/101": {
+      "variableCosts": 0.08,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-3.region-a.geo-1/102": {
+      "variableCosts": 0.16,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-3.region-a.geo-1/103": {
+      "variableCosts": 0.32,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-3.region-a.geo-1/104": {
+      "variableCosts": 0.64,
+      "fixedCosts": 0.0
+    },
+    "hpcloud-compute-az-3.region-a.geo-1-az-3.region-a.geo-1/105": {
+      "variableCosts": 1.28,
       "fixedCosts": 0.0
     }
   }

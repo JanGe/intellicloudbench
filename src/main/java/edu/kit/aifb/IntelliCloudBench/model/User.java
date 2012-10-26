@@ -70,16 +70,15 @@ public class User implements Serializable, ICredentialsChangedListener {
 	@SerializedName("picture")
 	private String pictureUrl = null;
 	private String gender = null;
+	private String birthday = null;
 	private String locale = null;
 
-	/* TODO: Move to application state */
-	private UIState uiState;
-	private CloudBenchService service;
-
 	public UIState getUiState() {
-		if (uiState == null)
-			uiState = ApplicationState.getUIStateForUser(this);
-		return uiState;
+			return ApplicationState.getUIStateForUser(this);
+	}
+	
+	public CloudBenchService getService() {
+		return ApplicationState.getCloudBenchServiceForUser(this);
 	}
 
 	public String getId() {
@@ -108,6 +107,10 @@ public class User implements Serializable, ICredentialsChangedListener {
 
 	public String getGender() {
   	return gender;
+  }
+
+	public String getBirthday() {
+  	return birthday;
   }
 
 	public String getLocale() {
@@ -181,12 +184,6 @@ public class User implements Serializable, ICredentialsChangedListener {
 			ex.printStackTrace();
 		}
 		return object;
-	}
-
-	public CloudBenchService getService() {
-		if (service == null)
-			service = new CloudBenchService();
-		return service;
 	}
 
 	@Override

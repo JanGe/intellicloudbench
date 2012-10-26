@@ -1,60 +1,57 @@
 /*
-* This file is part of libIntelliCloudBench.
-*
-* Copyright (c) 2012, Jan Gerlinger <jan.gerlinger@gmx.de>
-* All rights reserved.
-*
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-* * Redistributions of source code must retain the above copyright
-* notice, this list of conditions and the following disclaimer.
-* * Redistributions in binary form must reproduce the above copyright
-* notice, this list of conditions and the following disclaimer in the
-* documentation and/or other materials provided with the distribution.
-* * Neither the name of the Institute of Applied Informatics and Formal
-* Description Methods (AIFB) nor the names of its contributors may be used to
-* endorse or promote products derived from this software without specific prior
-* written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-* ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-* DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
-* DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ * This file is part of libIntelliCloudBench.
+ *
+ * Copyright (c) 2012, Jan Gerlinger <jan.gerlinger@gmx.de>
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * * Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright
+ * notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution.
+ * * Neither the name of the Institute of Applied Informatics and Formal
+ * Description Methods (AIFB) nor the names of its contributors may be used to
+ * endorse or promote products derived from this software without specific prior
+ * written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 
 package edu.kit.aifb.libIntelliCloudBench;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 
 import org.jclouds.ContextBuilder;
+import org.jclouds.compute.ComputeService;
 import org.jclouds.compute.ComputeServiceContext;
 import org.jclouds.providers.ProviderMetadata;
 import org.jclouds.providers.Providers;
-import org.jclouds.sshj.config.SshjSshClientModule;
+import org.jclouds.ssh.jsch.config.JschSshClientModule;
 import org.vaadin.artur.icepush.ICEPush;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.SortedSetMultimap;
 import com.google.inject.Module;
 
-import edu.kit.aifb.libIntelliCloudBench.background.BenchmarkRunner;
 import edu.kit.aifb.libIntelliCloudBench.background.Runner;
-import edu.kit.aifb.libIntelliCloudBench.metrics.CostsResult;
-import edu.kit.aifb.libIntelliCloudBench.metrics.IInstanceOrderer;
-import edu.kit.aifb.libIntelliCloudBench.metrics.IMetricsResult;
-import edu.kit.aifb.libIntelliCloudBench.metrics.IMetricsType;
 import edu.kit.aifb.libIntelliCloudBench.metrics.MetricsConfiguration;
 import edu.kit.aifb.libIntelliCloudBench.model.Benchmark;
 import edu.kit.aifb.libIntelliCloudBench.model.BenchmarkingState;
@@ -63,31 +60,32 @@ import edu.kit.aifb.libIntelliCloudBench.model.ICredentialsChangedListener;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceState;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceType;
 import edu.kit.aifb.libIntelliCloudBench.model.Provider;
-import edu.kit.aifb.libIntelliCloudBench.model.json.CostsStore;
 import edu.kit.aifb.libIntelliCloudBench.model.xml.Result;
+import edu.kit.aifb.libIntelliCloudBench.stopping.StoppingConfiguration;
+import edu.kit.aifb.libIntelliCloudBench.stopping.StoppingMethod;
 
-public class CloudBenchService extends Observable implements Serializable, ICredentialsChangedListener {
+public class CloudBenchService extends Observable implements Serializable, ICredentialsChangedListener, IService {
 	private static final long serialVersionUID = -7680311779178774123L;
 
 	private LinkedList<Provider> providers = new LinkedList<Provider>();
-	private Map<Provider, ComputeServiceContext> contextForProvider = new HashMap<Provider, ComputeServiceContext>();
+	private Map<Provider, ComputeServiceContext> contextForProvider = new HashMap<>();
 
-	private Collection<InstanceType> instances;
-	private Map<InstanceType, Multimap<Benchmark, Result>> resultsForAllBenchmarksForType =
-	    new HashMap<InstanceType, Multimap<Benchmark, Result>>();
+	private Map<InstanceType, Multimap<Benchmark, Result>> resultsForAllBenchmarksForType = new HashMap<>();
 
-	private Map<InstanceType, Runner> runnerForInstanceType = new HashMap<InstanceType, Runner>();
 	private BenchmarkingState benchmarkingState;
-	
-  private MetricsConfiguration metricsConfiguration;
-	
+
+	private MetricsConfiguration metricsConfiguration;
+	private StoppingConfiguration stoppingConfiguration;
+
 	private Integer numberOfRunnersDone;
 
 	private ICEPush pusher = new ICEPush();
 
 	private String name;
 
-	private Collection<Benchmark> benchmarks;
+	private List<Benchmark> benchmarks;
+
+	private StoppingMethod stopper;
 
 	public CloudBenchService() {
 		this("libIntelliCloudBench");
@@ -101,6 +99,7 @@ public class CloudBenchService extends Observable implements Serializable, ICred
 		return pusher;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -133,17 +132,25 @@ public class CloudBenchService extends Observable implements Serializable, ICred
 			provider.registerCredentialsChangedListener(this);
 			context =
 			    ContextBuilder.newBuilder(provider.getId()).credentials(credentials.getKey(), credentials.getSecret())
-			        .modules(ImmutableSet.<Module> of(new SshjSshClientModule())).buildView(ComputeServiceContext.class);
+			        .modules(ImmutableSet.<Module> of(new JschSshClientModule())).buildView(ComputeServiceContext.class);
 		}
 		return context;
 	}
 
 	public MetricsConfiguration getMetricsConfiguration() {
-  	return metricsConfiguration;
-  }
-	
+		return metricsConfiguration;
+	}
+
 	public void setMetricsConfiguration(MetricsConfiguration metricsConfiguration) {
 		this.metricsConfiguration = metricsConfiguration;
+	}
+
+	public StoppingConfiguration getStoppingConfiguration() {
+		return stoppingConfiguration;
+	}
+
+	public void setStoppingConfiguration(StoppingConfiguration stoppingConfiguration) {
+		this.stoppingConfiguration = stoppingConfiguration;
 	}
 
 	@Override
@@ -151,17 +158,22 @@ public class CloudBenchService extends Observable implements Serializable, ICred
 		contextForProvider.remove(provider);
 	}
 
-	public void prepareBenchmarking(Collection<InstanceType> checkedInstanceTypes) {
+	public void prepareBenchmarking(List<InstanceType> checkedInstanceTypes, Class<? extends Runner> runnerClass) {
+		this.resultsForAllBenchmarksForType.clear();
 		this.benchmarks = metricsConfiguration.getSelectedBenchmarks();
-		this.instances = checkedInstanceTypes;
 		this.numberOfRunnersDone = 0;
 
-		BenchmarkRunner runner;
-		for (InstanceType instanceType : instances) {
-			runner = new BenchmarkRunner(this, instanceType, benchmarks);
-			runnerForInstanceType.put(instanceType, runner);
+		Integer stoppingMethodIndex = stoppingConfiguration.getSelectedStoppingMethodIndex();
+
+		try {
+			this.stopper =
+			    StoppingConfiguration.newInstanceOf(stoppingMethodIndex, this, runnerClass, checkedInstanceTypes, benchmarks);
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+		    | NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
 		}
-		benchmarkingState = new BenchmarkingState(runnerForInstanceType.values());
+
+		benchmarkingState = new BenchmarkingState(stopper.getRunners());
 	}
 
 	public BenchmarkingState getBenchmarkingState() {
@@ -170,42 +182,35 @@ public class CloudBenchService extends Observable implements Serializable, ICred
 
 	public Collection<InstanceState> getAllInstanceStates() {
 		Collection<InstanceState> allInstanceStates = new LinkedList<InstanceState>();
-		for (Runner runner : runnerForInstanceType.values()) {
+		for (Runner runner : stopper.getRunners()) {
 			allInstanceStates.add(runner.getInstanceState());
 		}
 		return allInstanceStates;
 	}
 
 	public void startBenchmarking() {
-		for (Runner runner : runnerForInstanceType.values()) {
-			new Thread(runner).start();
-		}
+		stopper.start();
 	}
 
 	public void terminateAllImmediately() {
 		/* TODO: Needs a check to see if the instances really terminated... */
-		for (Runner runner : runnerForInstanceType.values()) {
-			runner.terminateImmediately();
-		}
-		runnerForInstanceType.clear();
+		this.stopper.terminateAll();
 	}
 
-	public void notifyDone(Runner runner) {
+	public void notifyFinished(Runner runner) {
 		/* Get results */
 		InstanceType instanceType = runner.getInstanceState().getInstanceType();
-		resultsForAllBenchmarksForType.put(instanceType, runner.getBenchmarkResults());
+		Multimap<Benchmark, Result> benchmarkResults = runner.getBenchmarkResults();
+		if (benchmarkResults != null)
+			resultsForAllBenchmarksForType.put(instanceType, benchmarkResults);
 
 		/* Check if all are done and notify the GUI */
 		synchronized (numberOfRunnersDone) {
-			if (++numberOfRunnersDone >= runnerForInstanceType.values().size()) {
+			if (++numberOfRunnersDone >= stopper.getRunners().size()) {
 				setChanged();
 				notifyObservers();
 			}
 		}
-	}
-
-	public Collection<Runner> getAllRunner() {
-		return runnerForInstanceType.values();
 	}
 
 	public Collection<Benchmark> getAllBenchmarks() {
@@ -218,46 +223,19 @@ public class CloudBenchService extends Observable implements Serializable, ICred
 
 	public void setBenchmarkResultsForType(Map<InstanceType, Multimap<Benchmark, Result>> resultsForAllBenchmarksForType) {
 		this.resultsForAllBenchmarksForType = resultsForAllBenchmarksForType;
-		this.benchmarks =
-		    resultsForAllBenchmarksForType.get(resultsForAllBenchmarksForType.keySet().iterator().next()).keySet();
+		InstanceType instanceType = resultsForAllBenchmarksForType.keySet().iterator().next();
+		this.benchmarks = new LinkedList<>(resultsForAllBenchmarksForType.get(instanceType).keySet());
 	}
 
-	public SortedSetMultimap<Double, InstanceType> getInstancesOrderedForMetricsType(final IMetricsType metricsType,
-	    Class<? extends IInstanceOrderer> instanceOrderer, InstanceType referenceInstance) throws InstantiationException,
-	    IllegalAccessException {
-
-		Collection<InstanceType> instanceTypes = resultsForAllBenchmarksForType.keySet();
-		Map<InstanceType, IMetricsResult> resultsForType = new HashMap<InstanceType, IMetricsResult>();
-
-		if (metricsType instanceof CostsStore) {
-			for (InstanceType instanceType : instanceTypes) {
-				CostsResult resultForType = new CostsResult(CostsStore.getInstance().getCostsForMonthsRunning(instanceType, 1));
-				resultsForType.put(instanceType, resultForType);
-			}
-
-		} else {
-
-			for (InstanceType instanceType : instanceTypes) {
-
-				Collection<Result> resultForType = resultsForAllBenchmarksForType.get(instanceType).asMap().get(metricsType);
-
-				if (resultForType.size() == 1) {
-					resultsForType.put(instanceType, resultForType.iterator().next());
-
-				} else {
-					throw new RuntimeException() {
-						private static final long serialVersionUID = 4561200421717233183L;
-
-						@Override
-						public String getMessage() {
-							return "Somehow there was more than one benchmark result for " + metricsType.getName();
-						}
-
-					};
-				}
-			}
-		}
-
-		return instanceOrderer.newInstance().orderInstances(resultsForType, referenceInstance);
+	public String getStopperLog() {
+		if (stopper == null)
+			return "";
+		return stopper.getLog();
 	}
+
+	@Override
+  public ComputeService getComputeService(Provider provider) {
+	  return this.getContext(provider).getComputeService();
+  }
+
 }

@@ -33,10 +33,13 @@ package edu.kit.aifb.IntelliCloudBench.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.kit.aifb.libIntelliCloudBench.CloudBenchService;
+
 public class ApplicationState {
 	
-	private static Map<String, User> usersById = new HashMap<String, User>();
-	private static Map<String, UIState> uiStateForUser = new HashMap<String, UIState>();
+	private static Map<String, User> usersById = new HashMap<>();
+	private static Map<String, UIState> uiStateForUser = new HashMap<>();
+	private static Map<String, CloudBenchService> serviceForUser = new HashMap<>();
 	
 	public static UIState getUIStateForUser(User user) {
 		UIState state = uiStateForUser.get(user.getId());
@@ -54,5 +57,14 @@ public class ApplicationState {
 	public static User getUserById(String userId) {
 		return usersById.get(userId);
 	}
+
+	public static CloudBenchService getCloudBenchServiceForUser(User user) {
+		CloudBenchService service = serviceForUser.get(user.getId());
+		if (service == null) {
+			service = new CloudBenchService();
+			serviceForUser.put(user.getId(), service);
+		}
+		return service;
+  }
 	
 }

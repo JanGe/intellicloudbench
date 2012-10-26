@@ -67,6 +67,7 @@ import edu.kit.aifb.IntelliCloudBench.ui.UserInfoBox;
 import edu.kit.aifb.IntelliCloudBench.ui.model.BenchmarkSelectionModel;
 import edu.kit.aifb.IntelliCloudBench.util.IOAuthListener;
 import edu.kit.aifb.IntelliCloudBench.util.OAuthHandler;
+import edu.kit.aifb.libIntelliCloudBench.background.BenchmarkRunner;
 import edu.kit.aifb.libIntelliCloudBench.model.Benchmark;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceType;
 import edu.kit.aifb.libIntelliCloudBench.model.json.CostsStore;
@@ -258,6 +259,7 @@ public class WelcomeScreen extends Application implements Observer, IOAuthListen
 			if (!(panel instanceof BenchmarkSelectionPanel)) {
 				BenchmarkSelectionModel benchmarkSelectionModel = user.getUiState().getBenchmarkSelectionModel();
 				user.getService().setMetricsConfiguration(benchmarkSelectionModel.getMetricsConfiguration());
+				user.getService().setStoppingConfiguration(benchmarkSelectionModel.getStoppingConfiguration());
 				panel = new BenchmarkSelectionPanel("Please select the Benchmarks you want to run...", benchmarkSelectionModel);
 			}
 			break;
@@ -273,7 +275,7 @@ public class WelcomeScreen extends Application implements Observer, IOAuthListen
 			nextButton.setVisible(false);
 			previousButton.setCaption("Start all over again...");
 			previousButton.setVisible(true);
-			panel = new ShowResultsPanel("Benchmarking results", user.getService());
+			panel = new ShowResultsPanel("Benchmarking results", user.getService(), user.getUiState());
 			break;
 		}
 		panel.setWidth("100%");
@@ -282,7 +284,7 @@ public class WelcomeScreen extends Application implements Observer, IOAuthListen
 		pusher.push();
 
 		if (user.getUiState().getCurrentScreen() == Screen.RUNS)
-			((RunningBenchmarksPanel) panel).initAndStartBenchmarking();
+			((RunningBenchmarksPanel) panel).initAndStartBenchmarking(BenchmarkRunner.class);
 	}
 
 	private void initLoginWindow() {

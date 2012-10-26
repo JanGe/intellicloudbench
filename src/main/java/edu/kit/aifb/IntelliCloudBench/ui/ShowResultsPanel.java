@@ -1,38 +1,38 @@
 /*
-* This file is part of IntelliCloudBench.
-*
-* Copyright (c) 2012, Jan Gerlinger <jan.gerlinger@gmx.de>
-* All rights reserved.
-*
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-* * Redistributions of source code must retain the above copyright
-* notice, this list of conditions and the following disclaimer.
-* * Redistributions in binary form must reproduce the above copyright
-* notice, this list of conditions and the following disclaimer in the
-* documentation and/or other materials provided with the distribution.
-* * Neither the name of the Institute of Applied Informatics and Formal
-* Description Methods (AIFB) nor the names of its contributors may be used to
-* endorse or promote products derived from this software without specific prior
-* written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-* ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-* DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
-* DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ * This file is part of IntelliCloudBench.
+ *
+ * Copyright (c) 2012, Jan Gerlinger <jan.gerlinger@gmx.de>
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * * Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright
+ * notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution.
+ * * Neither the name of the Institute of Applied Informatics and Formal
+ * Description Methods (AIFB) nor the names of its contributors may be used to
+ * endorse or promote products derived from this software without specific prior
+ * written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 
 package edu.kit.aifb.IntelliCloudBench.ui;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -52,12 +52,14 @@ import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.Slider;
 import com.vaadin.ui.Slider.ValueOutOfBoundsException;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
+import edu.kit.aifb.IntelliCloudBench.model.UIState;
 import edu.kit.aifb.libIntelliCloudBench.CloudBenchService;
-import edu.kit.aifb.libIntelliCloudBench.metrics.CostsResult;
 import edu.kit.aifb.libIntelliCloudBench.metrics.IInstanceOrderer;
 import edu.kit.aifb.libIntelliCloudBench.metrics.IMetricsResult;
+import edu.kit.aifb.libIntelliCloudBench.metrics.IMetricsResult.Proportion;
 import edu.kit.aifb.libIntelliCloudBench.metrics.IMetricsType;
 import edu.kit.aifb.libIntelliCloudBench.metrics.MetricsConfiguration;
 import edu.kit.aifb.libIntelliCloudBench.metrics.RelativeToReferenceInstanceOrderer;
@@ -65,6 +67,7 @@ import edu.kit.aifb.libIntelliCloudBench.model.Benchmark;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceType;
 import edu.kit.aifb.libIntelliCloudBench.model.json.CostsStore;
 import edu.kit.aifb.libIntelliCloudBench.model.xml.Result;
+import edu.kit.aifb.libIntelliCloudBench.util.MetricsHelper;
 
 public class ShowResultsPanel extends Panel {
 	private static final long serialVersionUID = -1107106613769316398L;
@@ -79,26 +82,24 @@ public class ShowResultsPanel extends Panel {
 
 	private boolean costsChecked = true;
 
-	private Map<InstanceType, Map<IMetricsType, Double>> relativeResults =
-	    new HashMap<InstanceType, Map<IMetricsType, Double>>();
-
 	private VerticalLayout weightedResultsLayout = new VerticalLayout();
 
-	public ShowResultsPanel(String caption, CloudBenchService service) {
+	private UIState uiState;
+
+	public ShowResultsPanel(String caption, CloudBenchService service, UIState uiState) {
 		super();
 
 		setCaption(caption);
 		content = ((VerticalLayout) getContent());
 		content.setSpacing(true);
 
+		this.uiState = uiState;
 		this.service = service;
 
 		Map<InstanceType, Multimap<Benchmark, Result>> resultsForAllBenchmarksForType =
 		    service.getResultsForAllBenchmarksForType();
 
 		for (InstanceType instanceType : resultsForAllBenchmarksForType.keySet()) {
-			relativeResults.put(instanceType, new HashMap<IMetricsType, Double>());
-
 			HorizontalLayout benchmarkLayout = new HorizontalLayout();
 
 			benchmarkLayout.setStyleName("grey_background");
@@ -169,7 +170,7 @@ public class ShowResultsPanel extends Panel {
 				metricsSelector.setItemCaption(instanceOrderer, MetricsConfiguration.INSTANCE_ORDERER_NAMES.get(index));
 			}
 			metricsSelector.setNullSelectionAllowed(false);
-			metricsSelector.select(service.getMetricsConfiguration().getSelectedInstanceOrderer());
+			metricsSelector.select(uiState.getMetricsConfiguration().getSelectedInstanceOrderer());
 			metricsSelector.setImmediate(true);
 			metricsSelector.addListener(new ValueChangeListener() {
 				private static final long serialVersionUID = -6167753078722196865L;
@@ -208,6 +209,12 @@ public class ShowResultsPanel extends Panel {
 			    buildMetricsResultLayout((Class<IInstanceOrderer>) metricsSelector.getValue(), costsChecked);
 			metricsLayout.addComponent(metricsResultLayout);
 
+			TextField stopperLogField = new TextField("Log for stopping method:");
+			stopperLogField.setWidth("100%");
+			stopperLogField.setHeight("250px");
+			stopperLogField.setValue(service.getStopperLog());
+			content.addComponent(stopperLogField);
+
 			content.addComponent(metricsLayout);
 		}
 	}
@@ -217,13 +224,7 @@ public class ShowResultsPanel extends Panel {
 		metricsResultLayout.setSpacing(true);
 		metricsResultLayout.setMargin(true);
 
-		boolean requiresReference = false;
-		try {
-			requiresReference = instanceOrderer.getField("REQUIRES_REFERENCE").getBoolean(null);
-		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
-			e.printStackTrace();
-		}
-		if (requiresReference) {
+		if (uiState.getMetricsConfiguration().requiresReference()) {
 
 			/* Select a reference of the instances */
 			List<InstanceType> instanceTypes =
@@ -245,6 +246,12 @@ public class ShowResultsPanel extends Panel {
 		weightedResultsLayout = buildWeightedResultsLayout();
 		metricsResultLayout.addComponent(weightedResultsLayout);
 
+		TextField csvTextField = buildCsvTextField(instanceOrderer);
+		csvTextField.setCaption("CSV-style results:");
+		csvTextField.setWidth("100%");
+		csvTextField.setHeight("250px");
+		metricsResultLayout.addComponent(csvTextField);
+
 		return metricsResultLayout;
 	}
 
@@ -257,7 +264,7 @@ public class ShowResultsPanel extends Panel {
 		}
 
 		referenceSelector.setNullSelectionAllowed(false);
-		referenceSelector.setValue(service.getMetricsConfiguration().getSelectedReference());
+		referenceSelector.setValue(uiState.getMetricsConfiguration().getSelectedReference());
 		referenceSelector.setImmediate(true);
 		referenceSelector.addListener(new ValueChangeListener() {
 			private static final long serialVersionUID = -2462873118115972047L;
@@ -289,22 +296,27 @@ public class ShowResultsPanel extends Panel {
 			Double sumWeighted = 0d;
 
 			StringBuilder sb = new StringBuilder(instanceType.asString(" | "));
-			sb.append(": ");
-			for (IMetricsType iMetricsType : relativeResults.get(instanceType).keySet()) {
-				Double weight = service.getMetricsConfiguration().getWeight(iMetricsType);
-				if (weight == null)
-					weight = 100d;
-				Double relativeResult = relativeResults.get(instanceType).get(iMetricsType);
+			sb.append(": (");
+			MetricsConfiguration metricsConfiguration = uiState.getMetricsConfiguration();
+			for (IMetricsType iMetricsType : metricsConfiguration.getRelativeResults().get(instanceType).keySet()) {
+				if (!(iMetricsType instanceof CostsStore) || (costsChecked)) {
+					Double weight = metricsConfiguration.getWeight(iMetricsType);
+					if (weight == null)
+						weight = 100d;
+					Double relativeResult = metricsConfiguration.getRelativeResults().get(instanceType).get(iMetricsType);
 
-				sb.append(" + ");
-				sb.append(weight);
-				sb.append(" x ");
-				sb.append(relativeResult);
+					sb.append(" + ");
+					sb.append(weight);
+					sb.append(" x ");
+					sb.append(relativeResult);
 
-				sumWeight += weight;
-				sumWeighted += weight * relativeResult;
+					sumWeight += weight;
+					sumWeighted += weight * relativeResult;
+				}
 			}
 			Double sum = sumWeighted / sumWeight;
+			sb.append(") / ");
+			sb.append(sumWeight);
 			sb.append(" = ");
 			sb.append(sum);
 
@@ -320,9 +332,16 @@ public class ShowResultsPanel extends Panel {
 		weightResultsLayout.setSpacing(true);
 		weightResultsLayout.setMargin(true);
 
+		Map<InstanceType, Multimap<IMetricsType, IMetricsResult>> resultsForAllMetricsTypesForType =
+		    MetricsHelper.combineBenchmarksAndCosts(costsChecked, service.getResultsForAllBenchmarksForType());
+
+		Collection<IMetricsType> metricsTypes = new HashSet<IMetricsType>(service.getAllBenchmarks());
+		if (costsChecked)
+			metricsTypes.add(CostsStore.getInstance());
+
 		SortedSetMultimap<Double, InstanceType> resultForType;
 
-		for (Benchmark benchmark : service.getAllBenchmarks()) {
+		for (IMetricsType metricsType : metricsTypes) {
 			HorizontalLayout weightResultLayout = new HorizontalLayout();
 			weightResultLayout.setWidth("100%");
 			weightResultLayout.setSpacing(true);
@@ -330,80 +349,92 @@ public class ShowResultsPanel extends Panel {
 
 			VerticalLayout resultLabelsLayout = new VerticalLayout();
 
-			Label benchmarkLabel = new Label(benchmark.getName() + ":");
+			Label benchmarkLabel = new Label(metricsType.getName() + ":");
 			resultLabelsLayout.addComponent(benchmarkLabel);
 			try {
 
-				resultForType = service.getInstancesOrderedForMetricsType(benchmark, instanceOrderer, referenceInstance);
+				resultForType =
+				    MetricsConfiguration.getInstancesOrderedForMetricsType(
+				        metricsType,
+				        instanceOrderer,
+				        resultsForAllMetricsTypesForType.keySet(),
+				        referenceInstance,
+				        resultsForAllMetricsTypesForType);
+
+				uiState.getMetricsConfiguration().putRelativeResults(metricsType, resultForType);
 
 				for (Double relativeResult : resultForType.keySet()) {
-					Collection<InstanceType> instanceTypes = resultForType.get(relativeResult);
-					for (InstanceType instanceType : instanceTypes) {
-						relativeResults.get(instanceType).put(benchmark, relativeResult);
-
-						Result result =
-						    service.getResultsForAllBenchmarksForType().get(instanceType).get(benchmark).iterator().next();
+					for (InstanceType instanceType : resultForType.get(relativeResult)) {
+						IMetricsResult result =
+						    resultsForAllMetricsTypesForType.get(instanceType).get(metricsType).iterator().next();
 						Label resultLabel = buildResultLabel(relativeResult, instanceType, result);
 						resultLabelsLayout.addComponent(resultLabel);
 					}
 				}
 
 			} catch (InstantiationException | IllegalAccessException e) {
-				metricsResultLayout.setComponentError(new SystemError("Could not order the benchmark results for "
-				    + benchmark.getId() + ": " + e.getMessage()));
+				metricsResultLayout.setComponentError(new SystemError("Could not order the metrics type results for "
+				    + metricsType.getId() + ": " + e.getMessage()));
 			}
 			weightResultLayout.addComponent(resultLabelsLayout);
 
-			final Slider weightSlider = buildWeightSlider(benchmark);
+			final Slider weightSlider = buildWeightSlider(metricsType);
 			weightResultLayout.addComponent(weightSlider);
 
 			weightResultsLayout.addComponent(weightResultLayout);
 		}
 
-		if (costsChecked) {
-			HorizontalLayout weightResultLayout = new HorizontalLayout();
-			weightResultLayout.setWidth("100%");
-			weightResultLayout.setSpacing(true);
-			weightResultLayout.setMargin(true);
-
-			VerticalLayout resultLabelsLayout = new VerticalLayout();
-
-			Label costsLabel = new Label(CostsStore.getInstance().getName() + ":");
-			resultLabelsLayout.addComponent(costsLabel);
-			try {
-
-				resultForType =
-				    service.getInstancesOrderedForMetricsType(CostsStore.getInstance(), instanceOrderer, referenceInstance);
-
-				for (Double relativeResult : resultForType.keySet()) {
-					Collection<InstanceType> instanceTypes = resultForType.get(relativeResult);
-					for (InstanceType instanceType : instanceTypes) {
-						relativeResults.get(instanceType).put(CostsStore.getInstance(), relativeResult);
-
-						/* TODO: Remove new instance creation */
-						CostsResult costsResult =
-						    new CostsResult(CostsStore.getInstance().getCostsForMonthsRunning(instanceType, 1));
-						Label costsResultLabel = buildResultLabel(relativeResult, instanceType, costsResult);
-						resultLabelsLayout.addComponent(costsResultLabel);
-					}
-				}
-
-			} catch (InstantiationException | IllegalAccessException e) {
-				metricsResultLayout.setComponentError(new SystemError("Could not order the costs results: " + e.getMessage()));
-			}
-			weightResultLayout.addComponent(resultLabelsLayout);
-
-			final Slider weightSlider = buildWeightSlider(CostsStore.getInstance());
-			weightResultLayout.addComponent(weightSlider);
-
-			weightResultsLayout.addComponent(weightResultLayout);
-		}
+		// if (costsChecked) {
+		// HorizontalLayout weightResultLayout = new HorizontalLayout();
+		// weightResultLayout.setWidth("100%");
+		// weightResultLayout.setSpacing(true);
+		// weightResultLayout.setMargin(true);
+		//
+		// VerticalLayout resultLabelsLayout = new VerticalLayout();
+		//
+		// Label costsLabel = new Label(CostsStore.getInstance().getName() + ":");
+		// resultLabelsLayout.addComponent(costsLabel);
+		// try {
+		//
+		// resultForType =
+		// MetricsConfiguration.getInstancesOrderedForMetricsType(CostsStore.getInstance(),
+		// instanceOrderer, referenceInstance, );
+		//
+		// for (Double relativeResult : resultForType.keySet()) {
+		// Collection<InstanceType> instanceTypes =
+		// resultForType.get(relativeResult);
+		// for (InstanceType instanceType : instanceTypes) {
+		// relativeResults.get(instanceType).put(CostsStore.getInstance(),
+		// relativeResult);
+		//
+		// /* TODO: Remove new instance creation */
+		// CostsResult costsResult =
+		// new
+		// CostsResult(CostsStore.getInstance().getCostsForMonthsRunning(instanceType,
+		// 1));
+		// Label costsResultLabel = buildResultLabel(relativeResult, instanceType,
+		// costsResult);
+		// resultLabelsLayout.addComponent(costsResultLabel);
+		// }
+		// }
+		//
+		// } catch (InstantiationException | IllegalAccessException e) {
+		// metricsResultLayout.setComponentError(new
+		// SystemError("Could not order the costs results: " + e.getMessage()));
+		// }
+		// weightResultLayout.addComponent(resultLabelsLayout);
+		//
+		// final Slider weightSlider = buildWeightSlider(CostsStore.getInstance());
+		// weightResultLayout.addComponent(weightSlider);
+		//
+		// weightResultsLayout.addComponent(weightResultLayout);
+		// }
 
 		return weightResultsLayout;
 	}
 
 	private Slider buildWeightSlider(final IMetricsType metricsType) {
-		Double weight = service.getMetricsConfiguration().getWeight(metricsType);
+		Double weight = uiState.getMetricsConfiguration().getWeight(metricsType);
 		if (weight == null)
 			weight = 100d;
 
@@ -423,7 +454,7 @@ public class ShowResultsPanel extends Panel {
 			private static final long serialVersionUID = -4202721080880004598L;
 
 			public void valueChange(ValueChangeEvent event) {
-				service.getMetricsConfiguration().setWeight(metricsType, (Double) weightSlider.getValue());
+				uiState.getMetricsConfiguration().setWeight(metricsType, (Double) weightSlider.getValue());
 				VerticalLayout oldWeightedResultsLayout = weightedResultsLayout;
 				weightedResultsLayout = buildWeightedResultsLayout();
 				metricsResultLayout.replaceComponent(oldWeightedResultsLayout, weightedResultsLayout);
@@ -442,5 +473,63 @@ public class ShowResultsPanel extends Panel {
 		    new Label(instanceType.asString(" | ") + ": " + relativeResult * 100 + "% | "
 		        + metricsResult.getValueAsString() + " " + metricsResult.getScale());
 		return resultLabel;
+	}
+
+	private TextField buildCsvTextField(Class<? extends IInstanceOrderer> instanceOrderer) {
+		TextField field = new TextField();
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("Provider,Region,HardwareType,Benchmark,Result,Scale,Proportion,");
+		sb.append(instanceOrderer.getSimpleName());
+		sb.append("\n");
+
+		Map<InstanceType, Multimap<Benchmark, Result>> resultsForAll = service.getResultsForAllBenchmarksForType();
+
+		for (InstanceType instanceType : resultsForAll.keySet()) {
+			for (Benchmark benchmark : resultsForAll.get(instanceType).keySet()) {
+				for (Result resultForBenchmark : resultsForAll.get(instanceType).get(benchmark)) {
+					sb.append(instanceType.getProvider().getId());
+					sb.append(",");
+					sb.append(instanceType.getRegion().getId());
+					sb.append(",");
+					sb.append(instanceType.getHardwareType().getId());
+					sb.append(",");
+					sb.append(benchmark.getId());
+					sb.append(",");
+					sb.append(resultForBenchmark.getValueAsString());
+					sb.append(",");
+					sb.append(resultForBenchmark.getScale());
+					sb.append(",");
+					sb.append(resultForBenchmark.getProportionAsString());
+					sb.append(",");
+					sb.append(uiState.getMetricsConfiguration().getRelativeResults().get(instanceType).get(benchmark));
+					sb.append("\n");
+				}
+			}
+
+			/* TODO: remove redundant code */
+			if (costsChecked) {
+				CostsStore monthlyCostResults = CostsStore.getInstance();
+				sb.append(instanceType.getProvider().getId());
+				sb.append(",");
+				sb.append(instanceType.getRegion().getId());
+				sb.append(",");
+				sb.append(instanceType.getHardwareType().getId());
+				sb.append(",");
+				sb.append(monthlyCostResults.getId());
+				sb.append(",");
+				sb.append(monthlyCostResults.getCostsForMonthsRunning(instanceType, 1));
+				sb.append(",");
+				sb.append("$");
+				sb.append(",");
+				sb.append(Proportion.LIB.toString());
+				sb.append(",");
+				sb.append(uiState.getMetricsConfiguration().getRelativeResults().get(instanceType).get(monthlyCostResults));
+				sb.append("\n");
+			}
+		}
+
+		field.setValue(sb.toString());
+		return field;
 	}
 }

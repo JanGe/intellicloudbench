@@ -17,7 +17,7 @@
         <gwt.version>2.5.0-rc1</gwt.version>
         <gwt.plugin.version>2.5.0-rc1</gwt.plugin.version>
     </properties>
-    
+
     <profiles>
         <profile>
             <id>tomcat-localhost</id>
@@ -29,7 +29,7 @@
                 <tomcat-url>http://localhost:8080/manager</tomcat-url>
             </properties>
         </profile>
-        
+
         <profile>
             <id>tomcat-remote</id>
             <properties>
@@ -147,15 +147,9 @@
                             <pluginExecutions>
                                 <pluginExecution>
                                     <pluginExecutionFilter>
-                                        <groupId>
-                                            org.codehaus.mojo
-                                        </groupId>
-                                        <artifactId>
-                                            gwt-maven-plugin
-                                        </artifactId>
-                                        <versionRange>
-                                            [2.2.0,)
-                                        </versionRange>
+                                        <groupId>org.codehaus.mojo</groupId>
+                                        <artifactId>gwt-maven-plugin</artifactId>
+                                        <versionRange>[2.2.0,)</versionRange>
                                         <goals>
                                             <goal>resources</goal>
                                         </goals>
@@ -167,16 +161,10 @@
                                 <pluginExecution>
                                     <pluginExecutionFilter>
                                         <groupId>com.vaadin</groupId>
-                                        <artifactId>
-                                            vaadin-maven-plugin
-                                        </artifactId>
-                                        <versionRange>
-                                            [1.0.2,)
-                                        </versionRange>
+                                        <artifactId>vaadin-maven-plugin</artifactId>
+                                        <versionRange>[1.0.2,)</versionRange>
                                         <goals>
-                                            <goal>
-                                                update-widgetset
-                                            </goal>
+                                            <goal>update-widgetset</goal>
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
@@ -192,6 +180,16 @@
     </build>
 
     <repositories>
+        <repository>
+            <id>Codehaus Snapshots</id>
+            <url>http://nexus.codehaus.org/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
         <repository>
             <id>vaadin</id>
             <url>http://oss.sonatype.org/content/repositories/vaadin/</url>
@@ -267,7 +265,7 @@
         </dependency>
         <dependency>
             <groupId>org.jclouds.driver</groupId>
-            <artifactId>jclouds-sshj</artifactId>
+            <artifactId>jclouds-jsch</artifactId>
             <version>1.5.1</version>
         </dependency>
         <dependency>

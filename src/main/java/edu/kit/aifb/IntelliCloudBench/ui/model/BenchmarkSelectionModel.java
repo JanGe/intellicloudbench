@@ -1,35 +1,36 @@
 /*
-* This file is part of IntelliCloudBench.
-*
-* Copyright (c) 2012, Jan Gerlinger <jan.gerlinger@gmx.de>
-* All rights reserved.
-*
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-* * Redistributions of source code must retain the above copyright
-* notice, this list of conditions and the following disclaimer.
-* * Redistributions in binary form must reproduce the above copyright
-* notice, this list of conditions and the following disclaimer in the
-* documentation and/or other materials provided with the distribution.
-* * Neither the name of the Institute of Applied Informatics and Formal
-* Description Methods (AIFB) nor the names of its contributors may be used to
-* endorse or promote products derived from this software without specific prior
-* written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-* ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-* DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
-* DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ * This file is part of IntelliCloudBench.
+ *
+ * Copyright (c) 2012, Jan Gerlinger <jan.gerlinger@gmx.de>
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * * Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright
+ * notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution.
+ * * Neither the name of the Institute of Applied Informatics and Formal
+ * Description Methods (AIFB) nor the names of its contributors may be used to
+ * endorse or promote products derived from this software without specific prior
+ * written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 
 package edu.kit.aifb.IntelliCloudBench.ui.model;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,14 +42,18 @@ import edu.kit.aifb.libIntelliCloudBench.metrics.MetricsConfiguration;
 import edu.kit.aifb.libIntelliCloudBench.model.Benchmark;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceType;
 import edu.kit.aifb.libIntelliCloudBench.model.json.CostsStore;
+import edu.kit.aifb.libIntelliCloudBench.stopping.StoppingConfiguration;
 
-public class BenchmarkSelectionModel extends Observable {
+public class BenchmarkSelectionModel extends Observable implements Serializable {
+	private static final long serialVersionUID = 2307408743918878990L;
 
 	private MetricsConfiguration metricsConfiguration;
+	private StoppingConfiguration stoppingConfiguration;
 	private List<InstanceType> instanceTypes;
 
-	public BenchmarkSelectionModel(MetricsConfiguration metricsConfiguration) {
+	public BenchmarkSelectionModel(MetricsConfiguration metricsConfiguration, StoppingConfiguration stoppingConfiguration) {
 		this.metricsConfiguration = metricsConfiguration;
+		this.stoppingConfiguration = stoppingConfiguration;
 	}
 
 	public boolean isSelected(Benchmark benchmark) {
@@ -90,7 +95,7 @@ public class BenchmarkSelectionModel extends Observable {
 	public Class<? extends IInstanceOrderer> getSelectedInstancesOrderer() {
 		return metricsConfiguration.getSelectedInstanceOrderer();
 	}
-	
+
 	public void setSelectedInstanceOrderer(Class<? extends IInstanceOrderer> instanceOrderer) {
 		metricsConfiguration.setSelectedInstanceOrderer(instanceOrderer);
 	}
@@ -146,21 +151,25 @@ public class BenchmarkSelectionModel extends Observable {
 
 	public void setInstanceTypes(List<InstanceType> instanceTypes) {
 		this.instanceTypes = instanceTypes;
-  }
-	
+	}
+
 	public Double getCostsBudget() {
 		return metricsConfiguration.getCostsBudget();
 	}
-	
+
 	public void setCostsBudget(Double budget) {
 		metricsConfiguration.setCostsBudget(budget);
 	}
-	
+
 	public boolean isCostsBudgetSelected() {
 		return metricsConfiguration.isCostsBudgetSelected();
 	}
 
 	public void setCostsBudgetSelected(boolean costsBudgetSelected) {
 		metricsConfiguration.setCostsBudgetSelected(costsBudgetSelected);
+	}
+
+	public StoppingConfiguration getStoppingConfiguration() {
+		return stoppingConfiguration;
 	}
 }

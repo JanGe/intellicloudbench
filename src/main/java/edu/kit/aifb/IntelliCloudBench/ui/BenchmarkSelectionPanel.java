@@ -1,32 +1,32 @@
 /*
-* This file is part of IntelliCloudBench.
-*
-* Copyright (c) 2012, Jan Gerlinger <jan.gerlinger@gmx.de>
-* All rights reserved.
-*
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-* * Redistributions of source code must retain the above copyright
-* notice, this list of conditions and the following disclaimer.
-* * Redistributions in binary form must reproduce the above copyright
-* notice, this list of conditions and the following disclaimer in the
-* documentation and/or other materials provided with the distribution.
-* * Neither the name of the Institute of Applied Informatics and Formal
-* Description Methods (AIFB) nor the names of its contributors may be used to
-* endorse or promote products derived from this software without specific prior
-* written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-* ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-* DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
-* DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ * This file is part of IntelliCloudBench.
+ *
+ * Copyright (c) 2012, Jan Gerlinger <jan.gerlinger@gmx.de>
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * * Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright
+ * notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution.
+ * * Neither the name of the Institute of Applied Informatics and Formal
+ * Description Methods (AIFB) nor the names of its contributors may be used to
+ * endorse or promote products derived from this software without specific prior
+ * written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 
 package edu.kit.aifb.IntelliCloudBench.ui;
 
@@ -55,6 +55,7 @@ import edu.kit.aifb.IntelliCloudBench.ui.tree.BenchmarkNodeComponent;
 import edu.kit.aifb.libIntelliCloudBench.metrics.IInstanceOrderer;
 import edu.kit.aifb.libIntelliCloudBench.metrics.MetricsConfiguration;
 import edu.kit.aifb.libIntelliCloudBench.model.InstanceType;
+import edu.kit.aifb.libIntelliCloudBench.stopping.StoppingConfiguration;
 
 public class BenchmarkSelectionPanel extends Panel {
 	private static final long serialVersionUID = 7884854283154917934L;
@@ -195,9 +196,9 @@ public class BenchmarkSelectionPanel extends Panel {
 		budgetField.setValue(benchmarkSelectionModel.getCostsBudget());
 		budgetField.setTextChangeEventMode(TextChangeEventMode.LAZY);
 		costsMetricsLayout.addComponent(budgetField);
-		
+
 		budgetCheckbox.addListener(new ValueChangeListener() {
-      private static final long serialVersionUID = -4106157808026234149L;
+			private static final long serialVersionUID = -4106157808026234149L;
 
 			@Override
 			public void valueChange(ValueChangeEvent event) {
@@ -210,9 +211,9 @@ public class BenchmarkSelectionPanel extends Panel {
 			}
 
 		});
-		
+
 		budgetField.addListener(new ValueChangeListener() {
-      private static final long serialVersionUID = 2728447996398268613L;
+			private static final long serialVersionUID = 2728447996398268613L;
 
 			@Override
 			public void valueChange(ValueChangeEvent event) {
@@ -221,6 +222,9 @@ public class BenchmarkSelectionPanel extends Panel {
 			}
 
 		});
+
+		NativeSelect stoppingMethodSelector = buildStoppingMethodSelector();
+		costsMetricsLayout.addComponent(stoppingMethodSelector);
 
 		metricsSelectionLayout.addComponent(costsMetricsLayout);
 		return metricsSelectionLayout;
@@ -285,5 +289,31 @@ public class BenchmarkSelectionPanel extends Panel {
 
 		});
 		return referenceSelector;
+	}
+
+	private NativeSelect buildStoppingMethodSelector() {
+		final NativeSelect stoppingMethodSelector = new NativeSelect("Set the stopping method:");
+		for (int i = 0; i < StoppingConfiguration.STOPPING_METHODS.size(); i++) {
+			stoppingMethodSelector.addItem(i);
+			stoppingMethodSelector.setItemCaption(i, StoppingConfiguration.getName(i));
+		}
+
+		Integer selectedStoppingMethodIndex =
+		    benchmarkSelectionModel.getStoppingConfiguration().getSelectedStoppingMethodIndex();
+
+		stoppingMethodSelector.setValue(selectedStoppingMethodIndex);
+		stoppingMethodSelector.setNullSelectionAllowed(false);
+		stoppingMethodSelector.setImmediate(true);
+		stoppingMethodSelector.addListener(new ValueChangeListener() {
+			private static final long serialVersionUID = -2462873118115972047L;
+
+			@Override
+			public void valueChange(ValueChangeEvent event) {
+				Integer selectedStoppingMethodIndex = (Integer) stoppingMethodSelector.getValue();
+				benchmarkSelectionModel.getStoppingConfiguration().setSelectedStoppingMethodIndex(selectedStoppingMethodIndex);
+			}
+
+		});
+		return stoppingMethodSelector;
 	}
 }
