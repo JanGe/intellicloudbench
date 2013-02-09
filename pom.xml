@@ -90,8 +90,6 @@
                 </executions>
             </plugin>
 
-            
-
             <!-- A simple Jetty test server at http://localhost:8080/IntelliCloudBench 
                 can be launched with the Maven goal jetty:run and stopped with jetty:stop -->
             <plugin>
@@ -115,6 +113,7 @@
                 </configuration>
             </plugin>
         </plugins>
+
         <pluginManagement>
             <plugins>
                 <!--This plugin's configuration is used to store Eclipse 

@@ -1,18 +1,18 @@
-### Want to find the Cloud Computing service that best suits your needs?
-### Check out IntelliCloudBench!
+# Want to find the Cloud Computing service that best suits your needs?
+# Check out IntelliCloudBench!
 
-# What is IntelliCloudBench?
+## What is IntelliCloudBench?
 
 ### Web application
 
 IntelliCloudBench is a Vaadin web application that supports you in benchmarking multiple Cloud Computing service providers at a time.
 Currently it supports a subset of the benchmarks that are used by the Phoronix Test Suite and the Cloud Computing services supported by jclouds.
 
-# libIntelliCloudBench
+### libIntelliCloudBench
 
-The part of IntelliCloudBench that does most of the work is available as a separate library.
+The part of IntelliCloudBench that does most of the work is encapsulated in a separate library.
 
-# How to use?
+## How to use?
 
 IntelliCloudBench can be deployed as a WAR package in any Java Servlet container.
 
@@ -28,8 +28,19 @@ To build the WAR file, follow these instructions:
 
 2.  Set up a Google API access key
 
-    TODO
+    To make login with Google work, a project has to be registered at Google's API Console (https://code.google.com/apis/console/) and a "Client ID for web applications" has to be created. Specify your *Redirect URIs* as `HOST:PORT/IntelliCloudBench/` and `HOST:PORT/IntelliCloudBench/1/`. ID and secret must then be setup in `src/main/resources/oauth.properties` like this:
 
-3. Deploy to your Servlet Container
+    ```
+    googleapikey=YOUR_GOOGLE_CLIENT_ID
+    googleapisecret=YOUR_GOOGLE_CLIENT_SECRET
+    ```
 
-    TODO
+3. Build IntelliCloudBench and deploy the WAR file to your Servlet Container
+
+    If you are using Jetty, just run:
+
+    ```
+    mvn jetty:run
+    ```
+
+    *Note*: The Java 7 SDK is required. On Ubuntu, install `openjdk-7-jdk`.
