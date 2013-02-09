@@ -17,16 +17,18 @@ IntelliCloudBench can be deployed as a WAR package in any Java Servlet container
 
 To build the WAR file, follow these instructions:
 
-1. Add the necessary libraries to your local Maven repository
+1.  Add the necessary libraries to your local Maven repository
 
+    ```
     mvn install:install-file -Dfile=lib/scribe-1.3.2-patched.jar -DgroupId=org.scribe -DartifactId=scribe -Dversion=1.3.2-patched -Dpackaging=jar
     mvn install:install-file -Dfile=lib/icepush.jar -DgroupId=org.icepush -DartifactId=icepush -Dversion=2.0.0-alpha3 -Dpackaging=jar
     mvn install:install-file -Dfile=lib/icepush-gwt.jar -DgroupId=org.icepush.gwt -DartifactId=icepush-gwt -Dversion=2.0.0-alpha3 -Dpackaging=jar
+    ```
 
-2. Set up a Google API access key
+2.  Set up a Google API access key
 
-TODO
+    TODO
 
 3. Deploy to your Servlet Container
 
-TODO
+    TODO
