@@ -1,4 +1,5 @@
-### Want to find the Cloud Computing service that best suits your needs? Check out IntelliCloudBench!
+### Want to find the Cloud Computing service that best suits your needs?
+### Check out IntelliCloudBench!
 
 # What is IntelliCloudBench?
 
