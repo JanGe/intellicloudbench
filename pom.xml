@@ -18,7 +18,7 @@
         <gwt.plugin.version>2.5.0-rc1</gwt.plugin.version>
     </properties>
 
-    <profiles>
+<!--    <profiles>
         <profile>
             <id>tomcat-localhost</id>
             <activation>
@@ -26,7 +26,7 @@
             </activation>
             <properties>
                 <tomcat-server>localhost</tomcat-server>
-                <tomcat-url>http://localhost:8080/manager</tomcat-url>
+                <tomcat-url>http://localhost:8080/manager/text</tomcat-url>
             </properties>
         </profile>
 
@@ -34,10 +34,10 @@
             <id>tomcat-remote</id>
             <properties>
                 <tomcat-server>remote</tomcat-server>
-                <tomcat-url>http://da-gerlinger.aifb.uni-karlsruhe.de:8080/manager/text</tomcat-url>
+                <tomcat-url>http://jangerlinger.de:8080/manager/text</tomcat-url>
             </properties>
         </profile>
-    </profiles>
+    </profiles> -->
 
     <build>
         <plugins>
@@ -111,6 +111,8 @@
                 </executions>
             </plugin>
 
+            
+
             <!-- A simple Jetty test server at http://localhost:8080/IntelliCloudBench 
                 can be launched with the Maven goal jetty:run and stopped with jetty:stop 
                 <plugin> <groupId>org.mortbay.jetty</groupId> <artifactId>maven-jetty-plugin</artifactId> 
@@ -123,7 +125,7 @@
                 <resourcesAsCSV>src/main/webapp,${project.build.directory}/${project.build.finalName}</resourcesAsCSV> 
                 </baseResource> </webAppConfig> </configuration> </plugin> -->
 
-            <!-- Tomcat Remote Deployment -->
+            <!-- Tomcat Remote Deployment 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>tomcat-maven-plugin</artifactId>
@@ -132,7 +134,7 @@
                     <server>${tomcat-server}</server>
                     <url>${tomcat-url}</url>
                 </configuration>
-            </plugin>
+            </plugin> -->
         </plugins>
         <pluginManagement>
             <plugins>
