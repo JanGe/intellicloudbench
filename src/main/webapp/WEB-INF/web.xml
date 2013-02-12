@@ -20,7 +20,7 @@
         <init-param>
             <description>Widget Set to Use</description>
             <param-name>widgetset</param-name>
-            <param-value>edu.kit.aifb.IntelliCloudBench.MyWidgetSet</param-value>
+            <param-value>edu.kit.aifb.IntelliCloudBench.CustomWidgetSet</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
