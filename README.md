@@ -1,5 +1,4 @@
-# Want to find the Cloud Computing service that best suits your needs?
-# Check out IntelliCloudBench!
+# Find the Cloud Computing service that best suits your needs!
 
 ## What is IntelliCloudBench?
 
@@ -7,6 +6,8 @@
 
 IntelliCloudBench is a Vaadin web application that supports you in benchmarking multiple Cloud Computing service providers at a time.
 Currently it supports a subset of the benchmarks that are used by the Phoronix Test Suite and the Cloud Computing services supported by jclouds.
+
+Check out the [demo instance](https://jangerlinger.de/IntelliCloudBench)!
 
 ### libIntelliCloudBench
 
